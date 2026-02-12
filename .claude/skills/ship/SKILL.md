@@ -5,9 +5,10 @@ Commit all changes, push to main, and deploy to GitHub Pages. Stop immediately i
 ## Steps
 
 ### 1. Validate rendering
+**Important:** Always render from inside the project directory (not with full paths from outside). Pollen sets `here` based on the working directory — using full paths breaks pagetree navigation.
 ```bash
 export PATH="/Applications/Racket v9.0/bin:$PATH"
-raco pollen render /Users/marcusberley/Documents/Projects/memoir
+builtin cd /Users/marcusberley/Documents/Projects/memoir && raco pollen reset && raco pollen render
 ```
 If rendering fails, fix the errors before continuing.
 
