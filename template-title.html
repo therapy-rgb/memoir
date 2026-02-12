@@ -1,0 +1,33 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>◊(select-from-metas 'title here)</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="title-page">
+  <main>
+    ◊(->html doc)
+  </main>
+  <nav class="toc">
+    <h2 class="toc-heading">Contents</h2>
+    ◊(let loop ([node here] [in-poems #f])
+      (define nxt (next node))
+      (if nxt
+        (let ([title (select-from-metas 'title nxt)]
+              [section (select-from-metas 'section nxt)])
+          (define is-poem (and section (string=? section "poems")))
+          (define section-header
+            (if (and is-poem (not in-poems))
+              "<h3 class=\"toc-section-heading\">Poems</h3>\n"
+              ""))
+          (string-append
+            section-header
+            (format "<a class=\"toc-entry~a\" href=\"~a\">~a</a>\n"
+              (if is-poem " toc-poem" "")
+              nxt title)
+            (loop nxt is-poem)))
+        ""))
+  </nav>
+</body>
+</html>
