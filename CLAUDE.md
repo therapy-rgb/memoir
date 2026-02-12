@@ -47,6 +47,7 @@ memoir/
 ├── chapter-01.html.pm      # Chapter source files (Pollen Markup)
 ├── chapter-02.html.pm
 ├── ...
+├── fonts/                  # Cooper, TT Disruptors (woff/woff2)
 └── images/                 # Static assets (cover, photos, etc.)
 ```
 
@@ -120,3 +121,8 @@ Font files in `fonts/` — same fonts used on suburbandadmode.com (sourced from 
 - `pollen.rkt` changes are picked up automatically (no restart needed)
 - The lozenge `◊` is typed with **Option + Shift + V** on Mac
 - Pollen's dev server renders on demand — first page load may be slow
+
+## Repository
+
+- **GitHub**: https://github.com/therapy-rgb/memoir (private)
+- **Branch strategy**: Direct commits to `main`
