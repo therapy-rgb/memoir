@@ -2,9 +2,9 @@
 
 ◊(define-meta title "Florida")
 ◊(define-meta date "December 21, 2025")
+◊(define-meta section "prose")
 
 ◊chapter-title{Florida}
-◊dateline{December 21, 2025}
 
 In Florida with my wife and daughter, staying at my in-law's place in Florida. It's a two-bedroom condo that looks out over the ocean, which right now is clouded over and threatening to rain. My wife and I are going out to dinner tonight, and her parents will watch our daughter, who is four months old, who they adore. She's sleeping now, theoretically, or at least she isn't crying as she lies in her pack n play.
 

@@ -2,9 +2,9 @@
 
 ◊(define-meta title "February Freeze")
 ◊(define-meta date "February 10, 2026")
+◊(define-meta section "prose")
 
 ◊chapter-title{February Freeze}
-◊dateline{February 10, 2026}
 
 It's cold this winter, and the 18 inches of snow that fell two weeks ago is still piled up throughout the neighborhood, the city, the surrounding towns. It's a pain to shovel, a pain to tromp around in, annoying to put four booties on Amelia's paws to prevent them from getting cracked and bloody from our morning walks. It's February. This is why people go to warm places late in winter.
 

@@ -1,8 +1,8 @@
 #lang pollen
 
-◊(define-meta title "Suburban Dad Mode")
+◊(define-meta title "Methodology")
 ◊(define-meta template "template-title.html")
 
-◊book-title{Suburban Dad Mode}
+◊book-title{Methodology}
 
 ◊squiggle[]

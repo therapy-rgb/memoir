@@ -11,11 +11,11 @@
 ◊; Quotes/dashes: Handled by pollen.rkt smart-quotes and smart-dashes
 ◊; —————————————————————————————————————————————
 
-◊(define body-font "'Cooper', 'Georgia', serif")
+◊(define body-font "'Georgia', serif")
 ◊(define heading-font "'Cooper', 'Georgia', serif")
 ◊(define handwritten-font "'TT Disruptors', cursive")
-◊(define body-size "19px")
-◊(define line-height "1.4")
+◊(define body-size "22px")
+◊(define line-height "1.5")
 ◊(define max-width "33em")
 ◊(define text-color "#111")
 ◊(define bg-color "#fffff8")
@@ -59,6 +59,7 @@
 body {
   font-family: ◊|body-font|;
   font-size: ◊|body-size|;
+  font-weight: normal;
   line-height: ◊|line-height|;
   color: ◊|text-color|;
   background: ◊|bg-color|;
@@ -99,7 +100,7 @@ header {
 
 .title-page main {
   text-align: center;
-  padding-top: 6rem;
+  padding-top: 0.5rem;
   padding-bottom: 4rem;
 }
 
@@ -114,8 +115,8 @@ header {
 .squiggle {
   display: block;
   margin: 1.5rem auto 0;
-  width: 60%;
-  max-width: 20em;
+  width: 45%;
+  max-width: 15em;
   filter: invert(1);
   opacity: 0.7;
 }
@@ -143,11 +144,10 @@ header {
 
 .toc-heading {
   font-family: ◊|heading-font|;
-  font-size: 1.8em;
+  font-size: 1.2em;
   font-weight: bold;
   letter-spacing: 0.02em;
   margin-bottom: 1.5rem;
-  text-align: center;
 }
 
 .toc-entry {
@@ -162,6 +162,12 @@ header {
   color: ◊|accent-color|;
 }
 
+.toc-section {
+  margin-top: 1.5rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid #e0e0e0;
+}
+
 .toc-section-heading {
   font-family: ◊|heading-font|;
   font-size: 1em;
@@ -169,10 +175,23 @@ header {
   font-variant: small-caps;
   letter-spacing: 0.1em;
   color: ◊|accent-color|;
-  margin-top: 2rem;
+  cursor: pointer;
   margin-bottom: 0.8rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid #e0e0e0;
+  list-style: none;
+}
+
+.toc-section-heading::-webkit-details-marker {
+  display: none;
+}
+
+.toc-section-heading::after {
+  content: " +";
+  font-variant: normal;
+  font-size: 0.85em;
+}
+
+.toc-section[open] > .toc-section-heading::after {
+  content: " \2212";
 }
 
 .toc-poem {

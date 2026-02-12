@@ -2,9 +2,9 @@
 
 ◊(define-meta title "Getting Started")
 ◊(define-meta date "November 15, 2025")
+◊(define-meta section "prose")
 
 ◊chapter-title{Getting Started}
-◊dateline{November 15, 2025}
 
 Getting started can be the hardest part. It takes energy, takes a decision. You don't know where you're going, or how long it will take, or if it's something possible. You just have an inkling. And that has to be enough.
 

@@ -11,23 +11,34 @@
   </main>
   <nav class="toc">
     <h2 class="toc-heading">Contents</h2>
-    ◊(let loop ([node here] [in-poems #f])
+    ◊(let loop ([node here] [front ""] [prose-buf ""] [poems-buf ""] [back ""])
       (define nxt (next node))
       (if nxt
         (let ([title (select-from-metas 'title nxt)]
-              [section (select-from-metas 'section nxt)])
-          (define is-poem (and section (string=? section "poems")))
-          (define section-header
-            (if (and is-poem (not in-poems))
-              "<h3 class=\"toc-section-heading\">Poems</h3>\n"
-              ""))
-          (string-append
-            section-header
-            (format "<a class=\"toc-entry~a\" href=\"~a\">~a</a>\n"
-              (if is-poem " toc-poem" "")
-              nxt title)
-            (loop nxt is-poem)))
-        ""))
+              [section (or (select-from-metas 'section nxt) "")])
+          (define entry (format "<a class=\"toc-entry~a\" href=\"~a\">~a</a>\n"
+                          (if (string=? section "poems") " toc-poem" "") nxt title))
+          (cond
+            [(string=? section "prose")
+             (loop nxt front (string-append prose-buf entry) poems-buf back)]
+            [(string=? section "poems")
+             (loop nxt front prose-buf (string-append poems-buf entry) back)]
+            ;; Before prose starts, it's a front-matter entry
+            [(string=? prose-buf "")
+             (loop nxt (string-append front entry) prose-buf poems-buf back)]
+            ;; After poems, it's back-matter
+            [else
+             (loop nxt front prose-buf poems-buf (string-append back entry))]))
+        ;; Assemble: front entries, then prose section, then poems section, then back entries
+        (string-append
+          front
+          (if (> (string-length prose-buf) 0)
+            (format "<details class=\"toc-section\" open>\n<summary class=\"toc-section-heading\">Prose</summary>\n~a</details>\n" prose-buf)
+            "")
+          (if (> (string-length poems-buf) 0)
+            (format "<details class=\"toc-section\">\n<summary class=\"toc-section-heading\">Poems</summary>\n~a</details>\n" poems-buf)
+            "")
+          back)))
   </nav>
 </body>
 </html>
