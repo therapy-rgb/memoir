@@ -12,7 +12,7 @@
 ◊; —————————————————————————————————————————————
 
 ◊(define body-font "'Cooper', 'Georgia', serif")
-◊(define heading-font "'Cooper Bold', 'Cooper', 'Georgia', serif")
+◊(define heading-font "'Cooper', 'Georgia', serif")
 ◊(define handwritten-font "'TT Disruptors', cursive")
 ◊(define body-size "19px")
 ◊(define line-height "1.4")
@@ -33,7 +33,7 @@
 }
 
 @font-face {
-  font-family: 'Cooper Bold';
+  font-family: 'Cooper';
   src: url('fonts/cooper_bold.woff2') format('woff2'),
        url('fonts/cooper_bold.woff') format('woff');
   font-weight: bold;
@@ -80,7 +80,7 @@ main {
 .chapter-title {
   font-family: ◊|heading-font|;
   font-size: 1.6em;
-  font-weight: normal;
+  font-weight: bold;
   letter-spacing: 0.01em;
   margin-bottom: 1.8rem;
   text-align: center;

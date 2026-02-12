@@ -5,7 +5,8 @@
 (module setup racket/base
   (provide (all-defined-out))
   (define project-server-port 8080)
-  (define publish-directory "publish"))
+  (define publish-directory "publish")
+  (define cache-watchlist (list "pollen.rkt")))
 
 ;; ——————————————————————————————————————————
 ;; Root decoder
