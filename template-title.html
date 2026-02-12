@@ -33,7 +33,7 @@
         (string-append
           front
           (if (> (string-length prose-buf) 0)
-            (format "<details class=\"toc-section\" open>\n<summary class=\"toc-section-heading\">Prose</summary>\n~a</details>\n" prose-buf)
+            (format "<details class=\"toc-section\">\n<summary class=\"toc-section-heading\">Prose</summary>\n~a</details>\n" prose-buf)
             "")
           (if (> (string-length poems-buf) 0)
             (format "<details class=\"toc-section\">\n<summary class=\"toc-section-heading\">Poems</summary>\n~a</details>\n" poems-buf)
