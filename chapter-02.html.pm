@@ -2,9 +2,9 @@
 
 ◊(define-meta title "Following Up")
 ◊(define-meta date "November 18, 2025")
+◊(define-meta section "prose")
 
 ◊chapter-title{Following Up}
-◊dateline{November 18, 2025}
 
 Some things are resolved right away, with one swift action. Other things take repetition, over and over again, doing new things, often badly, calling in experts, then avoiding, then obsessing over, and, each time, following up.
 

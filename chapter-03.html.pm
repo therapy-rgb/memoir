@@ -2,9 +2,9 @@
 
 ◊(define-meta title "before the work begins")
 ◊(define-meta date "November 19, 2025")
+◊(define-meta section "prose")
 
 ◊chapter-title{before the work begins}
-◊dateline{November 19, 2025}
 
 Between mundane obligations---like cooking and cleaning, emailing client updates, booking flights, etc.---and what the mind, or my mind anyway, wants to be doing, which is exploring ideas, investigating itself, trying to understand things in a more abstract, logos kind of way, there exists a tension. Perhaps it is the battle between the mensch and the daydreaming poet in me.
 

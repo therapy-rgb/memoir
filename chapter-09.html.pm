@@ -2,9 +2,9 @@
 
 ◊(define-meta title "all caught up")
 ◊(define-meta date "February 11, 2026")
+◊(define-meta section "prose")
 
 ◊chapter-title{all caught up}
-◊dateline{February 11, 2026}
 
 For the last few weeks, I've been spending a lot of my free solo time with Claude Code, working and playing with this website and my business website---marcusberley.com. It's been way too much fun, and I've learned a lot about how to communicate effectively with the AI, and how to use my computers, and how websites function. Because while it's vibe-coding, I've been going over this thing again and again, figuring out security protocols and APIs and aesthetic CSS layouts, and how to use Sanity and local dev servers and /commands. I'm nerding out here, but it's been a real blast.
 

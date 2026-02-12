@@ -2,9 +2,9 @@
 
 ◊(define-meta title "writing is pure luxury")
 ◊(define-meta date "February 10, 2026")
+◊(define-meta section "prose")
 
 ◊chapter-title{writing is pure luxury}
-◊dateline{February 10, 2026}
 
 Writing is pure luxury, because you aren't doing anything else but pulling words and ideas out of your mind, out of the ether, and plopping them on the page. No dishes or difficult conversations, no taxes or tangible results, just that pleasurable ordering of phrases that evoke some sort of felt impression.
 

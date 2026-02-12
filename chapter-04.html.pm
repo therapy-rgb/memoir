@@ -2,9 +2,9 @@
 
 ◊(define-meta title "Clearing a path")
 ◊(define-meta date "November 22, 2025")
+◊(define-meta section "prose")
 
 ◊chapter-title{Clearing a path}
-◊dateline{November 22, 2025}
 
 Maybe it's the deepening of fall, with it's darker days and mood changes, but I'm feeling the pull to write again. To just write, not with some bigger purpose outside of self-expression. There isn't a burning topic on my mind that I want to flesh out. It's an urge, a persistant impulse. A way to step back from my day-to-day and reflect upon it from a short distance.
 
