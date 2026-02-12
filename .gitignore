@@ -2,6 +2,7 @@
 compiled/
 publish/
 *.html
+!template.html
 styles.css
 
 # Pollen cache
