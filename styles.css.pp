@@ -75,6 +75,101 @@ main {
   margin-bottom: 3rem;
 }
 
+◊; ——— Site header ———
+
+header {
+  margin-bottom: 3rem;
+}
+
+.home-link {
+  font-family: ◊|heading-font|;
+  font-size: 0.8em;
+  font-weight: bold;
+  text-decoration: none;
+  color: ◊|accent-color|;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.home-link:hover {
+  color: ◊|text-color|;
+}
+
+◊; ——— Title page ———
+
+.title-page main {
+  text-align: center;
+  padding-top: 6rem;
+  padding-bottom: 4rem;
+}
+
+.book-title {
+  font-family: ◊|heading-font|;
+  font-size: 2.4em;
+  font-weight: bold;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.book-subtitle {
+  font-size: 1em;
+  font-style: italic;
+  color: ◊|accent-color|;
+  text-indent: 0;
+  margin-bottom: 0;
+}
+
+◊; ——— Table of contents ———
+◊; Modeled on Practical Typography: clean, spacious, no decorative borders.
+
+.toc {
+  display: block;
+  flex-direction: unset;
+  justify-content: unset;
+  border-top: none;
+  font-size: inherit;
+  margin-top: 3.5rem;
+  padding-top: 0;
+}
+
+.toc-heading {
+  font-family: ◊|heading-font|;
+  font-size: 1.8em;
+  font-weight: bold;
+  letter-spacing: 0.02em;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.toc-entry {
+  display: block;
+  padding: 0.4em 0;
+  text-decoration: none;
+  color: ◊|text-color|;
+  transition: color 0.15s;
+}
+
+.toc-entry:hover {
+  color: ◊|accent-color|;
+}
+
+.toc-section-heading {
+  font-family: ◊|heading-font|;
+  font-size: 1em;
+  font-weight: normal;
+  font-variant: small-caps;
+  letter-spacing: 0.1em;
+  color: ◊|accent-color|;
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.toc-poem {
+  font-style: italic;
+}
+
 ◊; ——— Headings ———
 
 .chapter-title {
@@ -84,6 +179,17 @@ main {
   letter-spacing: 0.01em;
   margin-bottom: 1.8rem;
   text-align: center;
+}
+
+◊; ——— Dateline ———
+
+.dateline {
+  text-align: center;
+  font-size: 0.85em;
+  color: ◊|accent-color|;
+  margin-bottom: 2rem;
+  text-indent: 0;
+  font-style: italic;
 }
 
 ◊; ——— Body text ———
@@ -176,6 +282,24 @@ strong {
   letter-spacing: 0.05em;
 }
 
+◊; ——— Poems ———
+
+.poems-page .chapter-title {
+  margin-bottom: 3rem;
+}
+
+.poem {
+  font-family: ◊|handwritten-font|;
+  font-size: 3em;
+  line-height: 1.5;
+  margin-bottom: 3rem;
+  padding-left: 1.5em;
+}
+
+.poem + .poem {
+  padding-top: 0;
+}
+
 ◊; ——— Handwritten (TT Disruptors) ———
 
 .handwritten {
@@ -209,4 +333,13 @@ nav {
 
 nav a {
   color: ◊|accent-color|;
+}
+
+◊; ——— Mobile ———
+
+@media (max-width: 520px) {
+  .poem {
+    font-size: 2.2em;
+    padding-left: 0;
+  }
 }

@@ -1,12 +1,12 @@
 #lang racket/base
-(require pollen/decode pollen/tag txexpr)
+(require pollen/decode pollen/tag txexpr racket/string racket/list)
 (provide (all-defined-out))
 
 (module setup racket/base
   (provide (all-defined-out))
   (define project-server-port 8080)
   (define publish-directory "publish")
-  (define cache-watchlist (list "pollen.rkt")))
+  (define cache-watchlist null))
 
 ;; ——————————————————————————————————————————
 ;; Root decoder
@@ -55,3 +55,26 @@
 ;; Handwritten style (TT Disruptors)
 (define (handwritten . elements)
   (txexpr 'span '((class "handwritten")) elements))
+
+;; Dateline for journal entries
+(define (dateline . elements)
+  (txexpr 'p '((class "dateline")) elements))
+
+;; Title page elements
+(define (book-title . elements)
+  (txexpr 'h1 '((class "book-title")) elements))
+
+(define (book-subtitle . elements)
+  (txexpr 'p '((class "book-subtitle")) elements))
+
+;; Poetry: preserve line breaks within a poem block
+(define (poem . elements)
+  (define text (string-join
+    (filter string?
+      (flatten elements)) ""))
+  (define lines (string-split text "\n"))
+  (define line-elements
+    (add-between
+      (map (lambda (l) (string-trim l)) lines)
+      '(br)))
+  (txexpr 'div '((class "poem")) line-elements))
