@@ -111,6 +111,15 @@ header {
   margin-bottom: 0.5rem;
 }
 
+.squiggle {
+  display: block;
+  margin: 1.5rem auto 0;
+  width: 60%;
+  max-width: 20em;
+  filter: invert(1);
+  opacity: 0.7;
+}
+
 .book-subtitle {
   font-size: 1em;
   font-style: italic;
