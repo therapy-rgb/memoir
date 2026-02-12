@@ -11,7 +11,7 @@
 ◊; Quotes/dashes: Handled by pollen.rkt smart-quotes and smart-dashes
 ◊; —————————————————————————————————————————————
 
-◊(define body-font "'Georgia', serif")
+◊(define body-font "'Cooper', 'Georgia', serif")
 ◊(define heading-font "'Cooper', 'Georgia', serif")
 ◊(define handwritten-font "'TT Disruptors', cursive")
 ◊(define body-size "22px")
@@ -22,6 +22,15 @@
 ◊(define accent-color "#555")
 
 ◊; ——— @font-face declarations ———
+
+@font-face {
+  font-family: 'Cooper';
+  src: url('fonts/cooper_light.woff2') format('woff2'),
+       url('fonts/cooper_light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
 
 @font-face {
   font-family: 'Cooper';
@@ -59,7 +68,7 @@
 body {
   font-family: ◊|body-font|;
   font-size: ◊|body-size|;
-  font-weight: normal;
+  font-weight: 300;
   line-height: ◊|line-height|;
   color: ◊|text-color|;
   background: ◊|bg-color|;
