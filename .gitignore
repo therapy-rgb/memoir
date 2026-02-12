@@ -1,0 +1,17 @@
+# Pollen build artifacts
+compiled/
+publish/
+*.html
+!template.html
+styles.css
+
+# Pollen cache
+pollen-cache/
+
+# macOS
+.DS_Store
+
+# Editor
+*~
+\#*\#
+.#*
