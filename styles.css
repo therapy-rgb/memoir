@@ -1,5 +1,14 @@
 @font-face {
   font-family: 'Cooper';
+  src: url('fonts/cooper_light.woff2') format('woff2'),
+       url('fonts/cooper_light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cooper';
   src: url('fonts/cooper_medium.woff2') format('woff2'),
        url('fonts/cooper_medium.woff') format('woff');
   font-weight: normal;
@@ -32,9 +41,9 @@
 }
 
 body {
-  font-family: 'Georgia', serif;
+  font-family: 'Cooper', 'Georgia', serif;
   font-size: 22px;
-  font-weight: normal;
+  font-weight: 300;
   line-height: 1.5;
   color: #111;
   background: #fffff8;
