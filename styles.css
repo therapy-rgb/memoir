@@ -1,0 +1,325 @@
+@font-face {
+  font-family: 'Cooper';
+  src: url('fonts/cooper_medium.woff2') format('woff2'),
+       url('fonts/cooper_medium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cooper';
+  src: url('fonts/cooper_bold.woff2') format('woff2'),
+       url('fonts/cooper_bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TT Disruptors';
+  src: url('fonts/TT_Disruptors_Regular.woff2') format('woff2'),
+       url('fonts/TT_Disruptors_Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Georgia', serif;
+  font-size: 22px;
+  font-weight: normal;
+  line-height: 1.5;
+  color: #111;
+  background: #fffff8;
+  max-width: 33em;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+  font-kerning: normal;
+  font-feature-settings: "kern" 1, "liga" 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+main {
+  margin-bottom: 3rem;
+}
+
+
+header {
+  margin-bottom: 3rem;
+}
+
+.home-link {
+  font-family: 'Cooper', 'Georgia', serif;
+  font-size: 0.8em;
+  font-weight: bold;
+  text-decoration: none;
+  color: #555;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.home-link:hover {
+  color: #111;
+}
+
+
+.title-page main {
+  text-align: center;
+  padding-top: 0.5rem;
+  padding-bottom: 4rem;
+}
+
+.book-title {
+  font-family: 'Cooper', 'Georgia', serif;
+  font-size: 2.4em;
+  font-weight: bold;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.squiggle {
+  display: block;
+  margin: 1.5rem auto 0;
+  width: 45%;
+  max-width: 15em;
+  filter: invert(1);
+  opacity: 0.7;
+}
+
+.book-subtitle {
+  font-size: 1em;
+  font-style: italic;
+  color: #555;
+  text-indent: 0;
+  margin-bottom: 0;
+}
+
+
+.toc {
+  display: block;
+  flex-direction: unset;
+  justify-content: unset;
+  border-top: none;
+  font-size: inherit;
+  margin-top: 3.5rem;
+  padding-top: 0;
+}
+
+.toc-heading {
+  font-family: 'Cooper', 'Georgia', serif;
+  font-size: 1.2em;
+  font-weight: bold;
+  letter-spacing: 0.02em;
+  margin-bottom: 1.5rem;
+}
+
+.toc-entry {
+  display: block;
+  padding: 0.4em 0;
+  text-decoration: none;
+  color: #111;
+  transition: color 0.15s;
+}
+
+.toc-entry:hover {
+  color: #555;
+}
+
+.toc-section {
+  margin-top: 1.5rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.toc-section-heading {
+  font-family: 'Cooper', 'Georgia', serif;
+  font-size: 1em;
+  font-weight: normal;
+  font-variant: small-caps;
+  letter-spacing: 0.1em;
+  color: #555;
+  cursor: pointer;
+  margin-bottom: 0.8rem;
+  list-style: none;
+}
+
+.toc-section-heading::-webkit-details-marker {
+  display: none;
+}
+
+.toc-section-heading::after {
+  content: " +";
+  font-variant: normal;
+  font-size: 0.85em;
+}
+
+.toc-section[open] > .toc-section-heading::after {
+  content: " \2212";
+}
+
+.toc-poem {
+  font-style: italic;
+}
+
+
+.chapter-title {
+  font-family: 'Cooper', 'Georgia', serif;
+  font-size: 1.6em;
+  font-weight: bold;
+  letter-spacing: 0.01em;
+  margin-bottom: 1.8rem;
+  text-align: center;
+}
+
+
+.dateline {
+  text-align: center;
+  font-size: 0.85em;
+  color: #555;
+  margin-bottom: 2rem;
+  text-indent: 0;
+  font-style: italic;
+}
+
+
+p {
+  margin-bottom: 0;
+  text-indent: 1.5em;
+  hanging-punctuation: first;
+}
+
+p:first-of-type,
+h1 + p,
+h2 + p,
+h3 + p,
+blockquote + p,
+hr + p,
+.epigraph + p,
+.epigraph + cite + p,
+.epigraph-source + p {
+  text-indent: 0;
+}
+
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: 600;
+}
+
+
+.epigraph {
+  font-style: italic;
+  font-size: 0.95em;
+  margin: 2rem 2em 0.3rem 2em;
+  padding: 0;
+  border: none;
+  text-indent: 0;
+}
+
+.epigraph p {
+  text-indent: 0;
+  margin-bottom: 0;
+}
+
+.epigraph-source {
+  display: block;
+  text-align: right;
+  margin: 0 2em 2rem 2em;
+  font-style: normal;
+  font-size: 0.85em;
+  color: #555;
+}
+
+.epigraph-source::before {
+  content: "\2014\2009";
+}
+
+
+.section-break {
+  border: none;
+  text-align: center;
+  margin: 1.8rem 0;
+}
+
+.section-break::after {
+  content: "\2022\2009\2009\2022\2009\2009\2022";
+  color: #555;
+  letter-spacing: 0.2em;
+}
+
+.section-break + p {
+  text-indent: 0;
+}
+
+
+.smallcaps {
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
+}
+
+
+.poems-page .chapter-title {
+  margin-bottom: 3rem;
+}
+
+.poem {
+  font-family: 'TT Disruptors', cursive;
+  font-size: 3em;
+  line-height: 1.5;
+  margin-bottom: 3rem;
+  padding-left: 1.5em;
+}
+
+.poem + .poem {
+  padding-top: 0;
+}
+
+
+.handwritten {
+  font-family: 'TT Disruptors', cursive;
+  font-size: 1.1em;
+}
+
+
+a {
+  color: #111;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+a:hover {
+  color: #555;
+}
+
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 2rem;
+  margin-top: 2rem;
+  border-top: 1px solid #ddd;
+  font-size: 0.85em;
+}
+
+nav a {
+  color: #555;
+}
+
+
+@media (max-width: 520px) {
+  .poem {
+    font-size: 2.2em;
+    padding-left: 0;
+  }
+}
