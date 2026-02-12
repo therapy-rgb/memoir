@@ -67,6 +67,9 @@
 (define (book-subtitle . elements)
   (txexpr 'p '((class "book-subtitle")) elements))
 
+(define (squiggle)
+  (txexpr 'img '((class "squiggle") (src "images/squiggle.webp") (alt "")) empty))
+
 ;; Poetry: preserve line breaks within a poem block
 (define (poem . elements)
   (define text (string-join

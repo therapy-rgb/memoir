@@ -5,4 +5,4 @@
 
 ◊book-title{Suburban Dad Mode}
 
-◊book-subtitle{Journal entries and poems}
+◊squiggle[]
