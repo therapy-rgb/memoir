@@ -39,12 +39,13 @@ Switch to `gh-pages`, replace all files, commit, and push:
 git -C /Users/marcusberley/Documents/Projects/memoir checkout gh-pages
 git -C /Users/marcusberley/Documents/Projects/memoir rm -rf .
 ```
-Copy published files into the repo and stage them explicitly (do not use `git add -A`):
+Copy published files into the repo and restore the CNAME file (do not use `git add -A`):
 ```bash
 cp -R /tmp/memoir-publish/* /Users/marcusberley/Documents/Projects/memoir/
 cp -R /tmp/memoir-publish/fonts /tmp/memoir-publish/images /Users/marcusberley/Documents/Projects/memoir/
+echo "methodology.pub" > /Users/marcusberley/Documents/Projects/memoir/CNAME
 ```
-Stage all `.html`, `.css`, `fonts/`, and `images/` files by name, then commit and push:
+Stage all `.html`, `.css`, `fonts/`, `images/`, and `CNAME` files by name, then commit and push:
 ```bash
 git -C /Users/marcusberley/Documents/Projects/memoir add <list each file explicitly>
 git -C /Users/marcusberley/Documents/Projects/memoir commit -m "Deploy site"
@@ -57,4 +58,4 @@ git -C /Users/marcusberley/Documents/Projects/memoir checkout main
 
 ### 5. Summary
 Report what was shipped: commit hash, files changed, and confirm GitHub Pages deploy was pushed.
-Site URL: https://therapy-rgb.github.io/memoir/
+Site URL: https://methodology.pub
