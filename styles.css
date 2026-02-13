@@ -288,12 +288,20 @@ strong {
 
 a {
   color: #111;
-  text-decoration: underline;
-  text-underline-offset: 0.15em;
+  text-decoration: none;
 }
 
 a:hover {
   color: #555;
+}
+
+main a:not(.home-link):not(.toc-entry) {
+  color: #a84632;
+  transition: background-color 0.15s;
+}
+
+main a:not(.home-link):not(.toc-entry):hover {
+  background-color: #e8f5e9;
 }
 
 
