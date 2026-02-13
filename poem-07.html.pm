@@ -2,7 +2,7 @@
 
 ◊(define-meta title "ode to code")
 ◊(define-meta template "template-poems.html")
-◊(define-meta section "poems")
+◊(define-meta section "prose")
 
 ◊poem{I'm mucking around with computers again
 staying up late to play games

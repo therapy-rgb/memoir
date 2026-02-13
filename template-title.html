@@ -10,7 +10,6 @@
     ◊(->html doc)
   </main>
   <nav class="toc">
-    <h2 class="toc-heading">Contents</h2>
     ◊(let loop ([node here] [front ""] [prose-buf ""] [poems-buf ""] [back ""])
       (define nxt (next node))
       (if nxt
@@ -33,7 +32,7 @@
         (string-append
           front
           (if (> (string-length prose-buf) 0)
-            (format "<details class=\"toc-section\">\n<summary class=\"toc-section-heading\">Prose</summary>\n~a</details>\n" prose-buf)
+            (format "<details class=\"toc-section\">\n<summary class=\"toc-section-heading\">Section 1</summary>\n~a</details>\n" prose-buf)
             "")
           (if (> (string-length poems-buf) 0)
             (format "<details class=\"toc-section\">\n<summary class=\"toc-section-heading\">Poems</summary>\n~a</details>\n" poems-buf)

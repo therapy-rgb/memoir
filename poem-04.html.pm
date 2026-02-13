@@ -2,7 +2,7 @@
 
 ◊(define-meta title "Moments of respite")
 ◊(define-meta template "template-poems.html")
-◊(define-meta section "poems")
+◊(define-meta section "prose")
 
 ◊poem{Moments of respite
 in a whirlwind day

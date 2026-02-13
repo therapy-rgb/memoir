@@ -2,7 +2,7 @@
 
 ◊(define-meta title "Baby sleeping")
 ◊(define-meta template "template-poems.html")
-◊(define-meta section "poems")
+◊(define-meta section "prose")
 
 ◊poem{Baby sleeping
 Wife sleeping

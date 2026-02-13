@@ -2,7 +2,7 @@
 
 ◊(define-meta title "A morning nap")
 ◊(define-meta template "template-poems.html")
-◊(define-meta section "poems")
+◊(define-meta section "prose")
 
 ◊poem{A morning nap
 for Natalie,

@@ -115,7 +115,7 @@ header {
 
 .book-title {
   font-family: ◊|heading-font|;
-  font-size: 2.4em;
+  font-size: 1.8em;
   font-weight: bold;
   letter-spacing: 0.02em;
   margin-bottom: 0.5rem;
@@ -211,7 +211,7 @@ header {
 
 .chapter-title {
   font-family: ◊|heading-font|;
-  font-size: 1.6em;
+  font-size: 1.3em;
   font-weight: bold;
   letter-spacing: 0.01em;
   margin-bottom: 1.8rem;
@@ -378,5 +378,8 @@ nav a {
   .poem {
     font-size: 2.2em;
     padding-left: 0;
+  }
+  .squiggle {
+    width: 75%;
   }
 }
