@@ -23,7 +23,8 @@ Pollen treats the book as a program — content is written in `.pm` markup files
 
 - **Racket 9.0** — language runtime (installed at `/Applications/Racket v9.0/`)
 - **Pollen** — book publishing system (Racket package)
-- **DrRacket** — IDE for Racket/Pollen development
+- **iA Writer** — primary editor for `.pm` content files (set as default app for `.pm` via `duti`)
+- **iCloud drafts:** `~/Library/Mobile Documents/27N4MQEA55~pro~writer/Documents/Methodology/` — Marcus drafts prose here before importing into `.pm` files
 
 ## Commands
 
@@ -98,6 +99,7 @@ All defined in `pollen.rkt`. Use these in `.pm` files:
 | `◊poem{...}` | Poem block (preserves line breaks) | `<div class="poem">` |
 | `◊book-title{...}` | Title page heading | `<h1 class="book-title">` |
 | `◊book-subtitle{...}` | Title page subtitle | `<p class="book-subtitle">` |
+| `◊link["url"]{...}` | Hyperlink (URL must be quoted) | `<a href="url">` |
 | `◊squiggle[]` | Decorative squiggle image (not currently used) | `<img class="squiggle">` |
 
 ## Metadata Conventions
@@ -208,6 +210,10 @@ raco pollen start &
 - Pollen serves pre-rendered `.html` files from disk if they exist, so stale output files must be deleted
 - The `compiled/` directory holds Pollen's internal cache (`.rktd` files) which can also go stale
 - `raco pollen reset` only clears cache it knows about — manually deleting `compiled/` is more thorough
+
+## Link Styling
+
+In-content links (inside `<main>`) use a brick red color (`#a84632`) with no underline. On hover, they get a mint green background highlight (`#e8f5e9`). Navigation and TOC links are excluded from this styling.
 
 ## Gotchas
 
