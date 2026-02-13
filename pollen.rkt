@@ -39,6 +39,9 @@
 (define (epigraph-source . elements)
   (txexpr 'cite '((class "epigraph-source")) elements))
 
+(define (link url . elements)
+  (txexpr 'a `((href ,url)) elements))
+
 (define (emphasis . elements)
   (txexpr 'em empty elements))
 

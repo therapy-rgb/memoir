@@ -329,16 +329,24 @@ strong {
 }
 
 ◊; ——— Links ———
-◊; Butterick: underline is acceptable for links, nothing else
+◊; Inspired by Practical Typography: small caps + color shift, no underline
 
 a {
   color: ◊|text-color|;
-  text-decoration: underline;
-  text-underline-offset: 0.15em;
+  text-decoration: none;
 }
 
 a:hover {
   color: ◊|accent-color|;
+}
+
+main a:not(.home-link):not(.toc-entry) {
+  color: #a84632;
+  transition: background-color 0.15s;
+}
+
+main a:not(.home-link):not(.toc-entry):hover {
+  background-color: #e8f5e9;
 }
 
 ◊; ——— Navigation ———

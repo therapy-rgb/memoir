@@ -4,12 +4,6 @@
 
 ◊chapter-title{Author}
 
-Marcus Berley is a licensed mental health counselor, writer, and father living in Rhode Island. He has been in private practice since 2012, specializing in helping people navigate major life transitions -- particularly divorce and separation.
+Methodology was written by Marcus Berley. Other publication experiments by the author include ◊link["https://www.amazon.com/M-Book-Poems-Marcus-Berley/dp/1931002983/ref=sr_1_1?crid=2BJL5W708RWH5&dib=eyJ2IjoiMSJ9.lo833MC4wRgYPbqjfWGYpsvREh9PctfCLrsXJKroTeQ.IL21QuGC4a_WliQOvdd7gMro_AlGMuGjzcmEdbOUm6I&dib_tag=se&keywords=marcus+berley&qid=1771015666&sprefix=marcus+berley%2Caps%2C137&sr=8-1"]{M}, The Giraffe, ◊link["https://artistmomolive.bandcamp.com/album/momo"]{MoMo}, Therapy 101, The Intern Dispatch, and ◊link["https://suburbandadmode.com"]{Suburban Dad Mode}. His professional website is ◊link["https://marcusberley.com"]{Marcus Berley Psychotherapy, LLC}. 
 
-Before all of that, he was a person who liked to write. He still is.
-
-Marcus lives with his wife Katherine, their daughter Natalie, and their dog Amelia. He spends his free time building websites, obsessing over typography, organizing closets, and trying to find a few minutes to sit with a cup of coffee before the next thing happens.
-
-His writing has appeared on suburbandadmode.com, which is where most of these entries were first published. He is not on social media in any meaningful way.
-
-This is his first book, if you can call it that.
+A handful of poems can be found published by ◊link["https://inparentheses.art/2019/07/31/works-by-marcus-berley/"]{in parentheses}. Additional unpublished letters, poems and notebooks can be requested from the archives, currently located in Romariz, Portugal. Works not to be confused with those of ◊link["https://marcberley.com"]{Marc Berley}.  
