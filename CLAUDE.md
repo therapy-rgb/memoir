@@ -54,15 +54,14 @@ memoir/
 ├── template-title.html      # Title page with table of contents
 │
 ├── title.html.pm            # Title page
-├── preface.html.pm          # Preface
 ├── author.html.pm           # Author bio
-├── chapter-01.html.pm       # Prose chapters (01–09)
-├── ...
-├── chapter-09.html.pm
-├── poem-01.html.pm          # Poems (01–09)
-├── ...
-├── poem-09.html.pm
+├── preface.html.pm          # Preface
 ├── notes.html.pm            # Colophon / notes
+├── chapter-01.html.pm       # "Getting Started" (Materials section)
+├── chapter-10.html.pm       # "The Show" (Technique section)
+├── poem-10.html.pm          # "Blasphemy" (Ripple Effects section)
+├── chapter-02–09.html.pm    # Drafts (not in index.ptree)
+├── poem-01–09.html.pm       # Drafts (not in index.ptree)
 ├── puttering.html.pm        # Draft (not in index.ptree)
 │
 ├── styles.css.pp            # Pollen preprocessor CSS (variables/logic in CSS)
@@ -76,8 +75,8 @@ memoir/
 - **`index.ptree`** — The table of contents. Lists output filenames in reading order. Navigation (previous/next) derived from this.
 - **`template.html`** — Default HTML template for prose chapters. Receives `doc` (content) and `here` (current page). Handles header, nav, footer.
 - **`template-poems.html`** — Template for poem pages. Same structure as `template.html` but adds a `poems-page` body class for poem-specific styling.
-- **`template-title.html`** — Title page template. Builds the table of contents dynamically, grouping entries into Prose and Poems sections using the `section` meta.
-- **`styles.css.pp`** — CSS with Pollen preprocessing (use `◊` for variables, logic). Typography follows Butterick's Practical Typography guidelines.
+- **`template-title.html`** — Title page template. Builds the table of contents dynamically, grouping entries into four collapsible sections (Materials, Technique, Ripple Effects, Poems) using the `section` meta. Front-matter entries (Author, Preface, Notes) appear as standalone links above sections.
+- **`styles.css.pp`** — CSS with Pollen preprocessing (use `◊` for variables, logic). Typography inspired by Butterick's Practical Typography. Paragraphs use space-between (no first-line indent).
 - **`*.html.pm`** — Chapter/page source files in Pollen Markup.
 
 ## Tag Functions
@@ -99,7 +98,7 @@ All defined in `pollen.rkt`. Use these in `.pm` files:
 | `◊poem{...}` | Poem block (preserves line breaks) | `<div class="poem">` |
 | `◊book-title{...}` | Title page heading | `<h1 class="book-title">` |
 | `◊book-subtitle{...}` | Title page subtitle | `<p class="book-subtitle">` |
-| `◊squiggle[]` | Decorative squiggle image | `<img class="squiggle">` |
+| `◊squiggle[]` | Decorative squiggle image (not currently used) | `<img class="squiggle">` |
 
 ## Metadata Conventions
 
@@ -107,13 +106,18 @@ Every `.pm` file starts with metadata via `◊(define-meta ...)`:
 
 ```
 ◊(define-meta title "Chapter Title")           # Required — used in nav and TOC
-◊(define-meta section "prose")                  # "prose" or "poems" — groups entries in TOC
+◊(define-meta section "prose")                  # Groups entries in TOC sections
 ◊(define-meta template "template-poems.html")   # Override default template
 ◊(define-meta date "November 15, 2025")         # Date for journal entries
 ```
 
 - `title` — required on every page. Displayed in navigation links and the TOC.
-- `section` — set to `"prose"` or `"poems"`. The title page template uses this to group TOC entries into collapsible Prose/Poems sections. Pages without a `section` (preface, author, notes) appear as standalone TOC entries.
+- `section` — groups entries into collapsible TOC sections. Valid values:
+  - `"prose"` → Materials section
+  - `"technique"` → Technique section
+  - `"ripple"` → Ripple Effects section
+  - `"poems"` → Poems section
+  - Pages without a `section` (author, preface, notes) appear as standalone TOC entries above the sections.
 - `template` — overrides `template.html`. Poems use `template-poems.html`, the title page uses `template-title.html`.
 
 ## Pollen Basics (for Claude's Reference)
