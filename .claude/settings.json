@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "changes=$(git diff --name-only 2>/dev/null; git diff --name-only --cached 2>/dev/null); if echo \"$changes\" | grep -qE '(pollen\\.rkt|template.*\\.html|index\\.ptree|styles\\.css\\.pp)' && ! echo \"$changes\" | grep -q 'CLAUDE.md'; then echo 'Project structure files were modified but CLAUDE.md was not updated. Please review and update CLAUDE.md to reflect any changes to tags, templates, fonts, project structure, or metadata.'; exit 1; fi; exit 0"
+          }
+        ]
+      }
+    ]
+  }
+}
