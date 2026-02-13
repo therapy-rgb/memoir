@@ -110,7 +110,7 @@ header {
 .title-page main {
   text-align: center;
   padding-top: 0.5rem;
-  padding-bottom: 4rem;
+  padding-bottom: 1.5rem;
 }
 
 .book-title {
@@ -121,14 +121,6 @@ header {
   margin-bottom: 0.5rem;
 }
 
-.squiggle {
-  display: block;
-  margin: 1.5rem auto 0;
-  width: 45%;
-  max-width: 15em;
-  filter: invert(1);
-  opacity: 0.7;
-}
 
 .book-subtitle {
   font-size: 1em;
@@ -149,6 +141,7 @@ header {
   font-size: inherit;
   margin-top: 3.5rem;
   padding-top: 0;
+  padding-left: 2em;
 }
 
 .toc-heading {
@@ -161,6 +154,7 @@ header {
 
 .toc-entry {
   display: block;
+  width: fit-content;
   padding: 0.4em 0;
   text-decoration: none;
   color: ◊|text-color|;
@@ -168,7 +162,7 @@ header {
 }
 
 .toc-entry:hover {
-  color: ◊|accent-color|;
+  color: #d4764e;
 }
 
 .toc-section {
@@ -180,13 +174,18 @@ header {
 .toc-section-heading {
   font-family: ◊|heading-font|;
   font-size: 1em;
-  font-weight: normal;
+  font-weight: bold;
   font-variant: small-caps;
   letter-spacing: 0.1em;
   color: ◊|accent-color|;
   cursor: pointer;
   margin-bottom: 0.8rem;
   list-style: none;
+  width: fit-content;
+}
+
+.toc-section-heading:hover {
+  color: #b8860b;
 }
 
 .toc-section-heading::-webkit-details-marker {
@@ -194,13 +193,11 @@ header {
 }
 
 .toc-section-heading::after {
-  content: " +";
-  font-variant: normal;
-  font-size: 0.85em;
+  content: none;
 }
 
 .toc-section[open] > .toc-section-heading::after {
-  content: " \2212";
+  content: none;
 }
 
 .toc-poem {
@@ -234,22 +231,9 @@ header {
 ◊; No space between paragraphs — pick indent OR space, not both
 
 p {
-  margin-bottom: 0;
-  text-indent: 1.5em;
-  hanging-punctuation: first;
-}
-
-◊; No indent on first paragraph after headings, epigraphs, or breaks
-p:first-of-type,
-h1 + p,
-h2 + p,
-h3 + p,
-blockquote + p,
-hr + p,
-.epigraph + p,
-.epigraph + cite + p,
-.epigraph-source + p {
+  margin-bottom: 1em;
   text-indent: 0;
+  hanging-punctuation: first;
 }
 
 ◊; ——— Emphasis ———
@@ -378,8 +362,5 @@ nav a {
   .poem {
     font-size: 2.2em;
     padding-left: 0;
-  }
-  .squiggle {
-    width: 75%;
   }
 }

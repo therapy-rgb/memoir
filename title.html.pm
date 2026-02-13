@@ -4,5 +4,3 @@
 ◊(define-meta template "template-title.html")
 
 ◊book-title{Methodology}
-
-◊squiggle[]

@@ -1,23 +1,9 @@
 #lang pollen
 
 title.html
-preface.html
 author.html
-chapter-01.html
-poem-01.html
-chapter-02.html
-poem-02.html
-chapter-03.html
-poem-03.html
-chapter-04.html
-poem-04.html
-chapter-05.html
-poem-05.html
-chapter-06.html
-chapter-07.html
-poem-07.html
-chapter-08.html
-poem-08.html
-chapter-09.html
-poem-09.html
+preface.html
 notes.html
+chapter-01.html
+chapter-10.html
+poem-10.html
