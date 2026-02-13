@@ -2,7 +2,7 @@
 
 ◊(define-meta title "morning time")
 ◊(define-meta template "template-poems.html")
-◊(define-meta section "poems")
+◊(define-meta section "prose")
 
 ◊poem{morning time
 and we all slept through the night

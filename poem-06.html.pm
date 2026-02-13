@@ -2,7 +2,7 @@
 
 ◊(define-meta title "Natalie sleeps in her crib")
 ◊(define-meta template "template-poems.html")
-◊(define-meta section "poems")
+◊(define-meta section "prose")
 
 ◊poem{Natalie sleeps in her crib
 I see her on the monitor

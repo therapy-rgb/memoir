@@ -2,7 +2,7 @@
 
 ◊(define-meta title "In the car")
 ◊(define-meta template "template-poems.html")
-◊(define-meta section "poems")
+◊(define-meta section "prose")
 
 ◊poem{In the car
 Natalie sleeping

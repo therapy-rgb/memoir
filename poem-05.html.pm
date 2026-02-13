@@ -2,7 +2,7 @@
 
 ◊(define-meta title "3am")
 ◊(define-meta template "template-poems.html")
-◊(define-meta section "poems")
+◊(define-meta section "prose")
 
 ◊poem{3am
 & you've asleep

@@ -2,7 +2,7 @@
 
 ◊(define-meta title "It's late at night")
 ◊(define-meta template "template-poems.html")
-◊(define-meta section "poems")
+◊(define-meta section "prose")
 
 ◊poem{It's late at night
 or almost time
