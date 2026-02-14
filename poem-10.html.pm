@@ -6,4 +6,4 @@
 
 ◊poem{In the words of the wise
 Everyone swims
-We don't ever truly know nothing}
+We don't ever truly know nothing, the bastards keep coming}
