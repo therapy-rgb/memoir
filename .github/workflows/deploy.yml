@@ -1,0 +1,50 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # allow manual trigger from GitHub
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Racket
+        uses: Bogdanp/setup-racket@v1.11
+        with:
+          architecture: x64
+          distribution: full
+          version: stable
+
+      - name: Cache Racket packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.local/share/racket
+          key: racket-pkgs-${{ runner.os }}-${{ hashFiles('pollen.rkt') }}
+          restore-keys: racket-pkgs-${{ runner.os }}-
+
+      - name: Install Pollen
+        run: raco pkg install --auto --skip-installed pollen
+
+      - name: Render site
+        run: raco pollen render
+
+      - name: Prepare deploy directory
+        run: |
+          mkdir -p _deploy
+          cp *.html _deploy/
+          cp styles.css _deploy/
+          cp -r fonts/ _deploy/fonts/
+          cp -r images/ _deploy/images/
+          echo "methodology.pub" > _deploy/CNAME
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_deploy
