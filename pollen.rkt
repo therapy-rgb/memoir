@@ -40,7 +40,7 @@
   (txexpr 'cite '((class "epigraph-source")) elements))
 
 (define (link url . elements)
-  (txexpr 'a `((href ,url)) elements))
+  (txexpr 'a `((href ,url) (target "_blank") (rel "noopener")) elements))
 
 (define (emphasis . elements)
   (txexpr 'em empty elements))
