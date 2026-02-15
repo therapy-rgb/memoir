@@ -5,8 +5,7 @@
 ◊(define-meta section "prose")
 
 ◊poem{Moments of respite
-in a whirlwind day
-Opportunities that
+in a whirlwind day that
 open & close
 Fall brings out poems
 for those who are ready}
