@@ -5,5 +5,5 @@
 ◊(define-meta section "ripple")
 
 ◊poem{In the words of the wise
-Everyone swims
+Everyone swimmmmmmms
 We don't ever truly know nothing, the bastards keep coming}
