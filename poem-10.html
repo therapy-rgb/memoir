@@ -10,11 +10,17 @@
     <a class="home-link" href="title.html">Methodology</a>
   </header>
   <main>
-    <root><div class="poem">In the words of the wise<br/>Everyone swims<br/>We don’t ever truly know nothing</div></root>
+    <root><div class="poem">In the words of the wise<br/>Everyone swimmmmmmms<br/>We don’t ever truly know nothing, the bastards keep coming</div></root>
   </main>
   <nav>
     <a class="nav-prev" href="chapter-10.html">&larr; The Show</a>
 
   </nav>
+  <script>
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowLeft')  { var a = document.querySelector('.nav-prev'); if (a) a.click(); }
+      if (e.key === 'ArrowRight') { var a = document.querySelector('.nav-next'); if (a) a.click(); }
+    });
+  </script>
 </body>
 </html>

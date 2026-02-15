@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Show</title>
+  <title>◊(select-from-metas 'title here)</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -10,11 +10,15 @@
     <a class="home-link" href="title.html">Methodology</a>
   </header>
   <main>
-    <root><h1 class="chapter-title">The Show</h1><p>all the children play every day</p></root>
+    ◊(->html doc)
   </main>
   <nav>
-    <a class="nav-prev" href="chapter-01.html">&larr; Getting Started</a>
-    <a class="nav-next" href="poem-10.html">Blasphemy &rarr;</a>
+    ◊when/splice[(previous here)]{
+    <a class="nav-prev" href="◊(previous here)">&larr; ◊(select-from-metas 'title (previous here))</a>
+    }
+    ◊when/splice[(next here)]{
+    <a class="nav-next" href="◊(next here)">◊(select-from-metas 'title (next here)) &rarr;</a>
+    }
   </nav>
   <script>
     document.addEventListener('keydown', function(e) {
