@@ -342,7 +342,7 @@ a:hover {
 }
 
 main a:not(.home-link):not(.toc-entry) {
-  color: #a84632;
+  color: #C44569;
   transition: background-color 0.15s;
 }
 
