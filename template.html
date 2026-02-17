@@ -1,0 +1,31 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>◊(select-from-metas 'title here)</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <a class="home-link" href="title.html">Methodology</a>
+  </header>
+  <main>
+    ◊(->html doc)
+  </main>
+  <nav>
+    ◊when/splice[(previous here)]{
+    <a class="nav-prev" href="◊(previous here)">&larr; ◊(select-from-metas 'title (previous here))</a>
+    }
+    ◊when/splice[(next here)]{
+    <a class="nav-next" href="◊(next here)">◊(select-from-metas 'title (next here)) &rarr;</a>
+    }
+  </nav>
+  <script>
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowLeft')  { var a = document.querySelector('.nav-prev'); if (a) a.click(); }
+      if (e.key === 'ArrowRight') { var a = document.querySelector('.nav-next'); if (a) a.click(); }
+    });
+  </script>
+</body>
+</html>
