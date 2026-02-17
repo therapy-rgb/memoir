@@ -17,9 +17,44 @@
 ◊(define body-size "22px")
 ◊(define line-height "1.5")
 ◊(define max-width "33em")
-◊(define text-color "#111")
-◊(define bg-color "#fafafa")
-◊(define accent-color "#555")
+
+◊; ——— Color scheme (light / dark) ———
+◊; Colors are defined as CSS custom properties so the browser
+◊; can swap them at runtime based on the user's OS setting.
+
+:root {
+  color-scheme: light dark;
+
+  --text-color: #111;
+  --bg-color: #fafafa;
+  --accent-color: #555;
+  --link-color: #C44569;
+  --link-hover-bg: #e8f5e9;
+  --border-color: #ddd;
+  --toc-border-color: #e0e0e0;
+  --toc-hover-color: #d4764e;
+  --toc-heading-hover: #b8860b;
+  --home-hover-color: #faf9f6;
+  --home-hover-bg: #2c2c2c;
+  --nav-hover-bg: #e3f2fd;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-color: #d4d4d4;
+    --bg-color: #1a1a1a;
+    --accent-color: #999;
+    --link-color: #e07a8f;
+    --link-hover-bg: #2a3a2e;
+    --border-color: #3a3a3a;
+    --toc-border-color: #333;
+    --toc-hover-color: #e8a070;
+    --toc-heading-hover: #d4a84a;
+    --home-hover-color: #1a1a1a;
+    --home-hover-bg: #d4d4d4;
+    --nav-hover-bg: #1e2d3d;
+  }
+}
 
 ◊; ——— @font-face declarations ———
 
@@ -70,8 +105,8 @@ body {
   font-size: ◊|body-size|;
   font-weight: 300;
   line-height: ◊|line-height|;
-  color: ◊|text-color|;
-  background: ◊|bg-color|;
+  color: var(--text-color);
+  background: var(--bg-color);
   max-width: ◊|max-width|;
   margin: 0 auto;
   padding: 4rem 1.5rem;
@@ -96,14 +131,14 @@ header {
   font-size: 0.8em;
   font-weight: bold;
   text-decoration: none;
-  color: ◊|accent-color|;
+  color: var(--accent-color);
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
 .home-link:hover {
-  color: #faf9f6;
-  background-color: #2c2c2c;
+  color: var(--home-hover-color);
+  background-color: var(--home-hover-bg);
 }
 
 ◊; ——— Title page ———
@@ -126,7 +161,7 @@ header {
 .book-subtitle {
   font-size: 1em;
   font-style: italic;
-  color: ◊|accent-color|;
+  color: var(--accent-color);
   text-indent: 0;
   margin-bottom: 0;
 }
@@ -158,18 +193,18 @@ header {
   width: fit-content;
   padding: 0.4em 0;
   text-decoration: none;
-  color: ◊|text-color|;
+  color: var(--text-color);
   transition: color 0.15s;
 }
 
 .toc-entry:hover {
-  color: #d4764e;
+  color: var(--toc-hover-color);
 }
 
 .toc-section {
   margin-top: 1.5rem;
   padding-top: 1.2rem;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid var(--toc-border-color);
 }
 
 .toc-section-heading {
@@ -178,7 +213,7 @@ header {
   font-weight: bold;
   font-variant: small-caps;
   letter-spacing: 0.1em;
-  color: ◊|accent-color|;
+  color: var(--accent-color);
   cursor: pointer;
   margin-bottom: 0.8rem;
   list-style: none;
@@ -186,7 +221,7 @@ header {
 }
 
 .toc-section-heading:hover {
-  color: #b8860b;
+  color: var(--toc-heading-hover);
 }
 
 .toc-section-heading::-webkit-details-marker {
@@ -221,7 +256,7 @@ header {
 .dateline {
   text-align: center;
   font-size: 0.85em;
-  color: ◊|accent-color|;
+  color: var(--accent-color);
   margin-bottom: 2rem;
   text-indent: 0;
   font-style: italic;
@@ -270,7 +305,7 @@ strong {
   margin: 0 2em 2rem 2em;
   font-style: normal;
   font-size: 0.85em;
-  color: ◊|accent-color|;
+  color: var(--accent-color);
 }
 
 .epigraph-source::before {
@@ -287,7 +322,7 @@ strong {
 
 .section-break::after {
   content: "\2022\2009\2009\2022\2009\2009\2022";
-  color: ◊|accent-color|;
+  color: var(--accent-color);
   letter-spacing: 0.2em;
 }
 
@@ -333,21 +368,21 @@ strong {
 ◊; Inspired by Practical Typography: small caps + color shift, no underline
 
 a {
-  color: ◊|text-color|;
+  color: var(--text-color);
   text-decoration: none;
 }
 
 a:hover {
-  color: ◊|accent-color|;
+  color: var(--accent-color);
 }
 
 main a:not(.home-link):not(.toc-entry) {
-  color: #C44569;
+  color: var(--link-color);
   transition: background-color 0.15s;
 }
 
 main a:not(.home-link):not(.toc-entry):hover {
-  background-color: #e8f5e9;
+  background-color: var(--link-hover-bg);
 }
 
 ◊; ——— Navigation ———
@@ -357,17 +392,17 @@ nav {
   justify-content: space-between;
   padding-top: 2rem;
   margin-top: 2rem;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid var(--border-color);
   font-size: 0.85em;
 }
 
 nav a {
-  color: ◊|accent-color|;
+  color: var(--accent-color);
 }
 
 nav .nav-prev:hover,
 nav .nav-next:hover {
-  background-color: #e3f2fd;
+  background-color: var(--nav-hover-bg);
 }
 
 ◊; ——— Mobile ———
