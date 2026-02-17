@@ -41,7 +41,6 @@ jobs:
           cp styles.css _deploy/
           cp favicon.svg _deploy/
           cp -r fonts/ _deploy/fonts/
-          cp -r images/ _deploy/images/
           echo "methodology.pub" > _deploy/CNAME
 
       - name: Deploy to gh-pages
