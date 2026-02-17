@@ -110,7 +110,6 @@ Every `.pm` file starts with metadata via `◊(define-meta ...)`:
 ◊(define-meta title "Chapter Title")           # Required — used in nav and TOC
 ◊(define-meta section "prose")                  # Groups entries in TOC sections
 ◊(define-meta template "template-poems.html")   # Override default template
-◊(define-meta date "November 15, 2025")         # Date for journal entries
 ```
 
 - `title` — required on every page. Displayed in navigation links and the TOC.
