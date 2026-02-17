@@ -67,7 +67,7 @@ memoir/
 │
 ├── styles.css.pp            # Pollen preprocessor CSS (variables/logic in CSS)
 ├── fonts/                   # Cooper Light/Medium/Bold, TT Disruptors (woff/woff2)
-└── images/                  # Static assets (squiggle, etc.)
+└── images/                  # Static assets
 ```
 
 ## Key Files
@@ -100,7 +100,6 @@ All defined in `pollen.rkt`. Use these in `.pm` files:
 | `◊book-title{...}` | Title page heading | `<h1 class="book-title">` |
 | `◊book-subtitle{...}` | Title page subtitle | `<p class="book-subtitle">` |
 | `◊link["url"]{...}` | Hyperlink (URL must be quoted) | `<a href="url">` |
-| `◊squiggle[]` | Decorative squiggle image (not currently used) | `<img class="squiggle">` |
 
 ## Metadata Conventions
 
