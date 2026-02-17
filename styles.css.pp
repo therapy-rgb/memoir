@@ -18,7 +18,7 @@
 ◊(define line-height "1.5")
 ◊(define max-width "33em")
 ◊(define text-color "#111")
-◊(define bg-color "#fffff8")
+◊(define bg-color "#fafafa")
 ◊(define accent-color "#555")
 
 ◊; ——— @font-face declarations ———
