@@ -32,7 +32,6 @@ Write the `.pm` file with the correct boilerplate.
 #lang pollen
 
 ◊(define-meta title "THE TITLE")
-◊(define-meta date "CURRENT DATE")
 ◊(define-meta section "prose")
 
 ◊chapter-title{THE TITLE}
@@ -53,7 +52,6 @@ Write the `.pm` file with the correct boilerplate.
 ```
 
 - Use the actual title provided by the user.
-- Use today's date formatted as `Month Day, Year` (e.g., `February 13, 2026`).
 
 ### 4. Add to index.ptree
 Read `/Users/marcusberley/Documents/Projects/memoir/index.ptree` and insert the new output filename (`chapter-NN.html` or `poem-NN.html`) in the correct position:
