@@ -79,6 +79,7 @@ body {
   font-feature-settings: "kern" 1, "liga" 1;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  border: 1px solid #ddd;
 }
 
 main {
