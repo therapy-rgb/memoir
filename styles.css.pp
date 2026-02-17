@@ -102,7 +102,8 @@ header {
 }
 
 .home-link:hover {
-  color: ◊|text-color|;
+  color: #faf9f6;
+  background-color: #2c2c2c;
 }
 
 ◊; ——— Title page ———
@@ -362,6 +363,11 @@ nav {
 
 nav a {
   color: ◊|accent-color|;
+}
+
+nav .nav-prev:hover,
+nav .nav-next:hover {
+  background-color: #e3f2fd;
 }
 
 ◊; ——— Mobile ———
