@@ -61,13 +61,12 @@ memoir/
 ├── notes.html.pm            # Colophon / notes
 ├── section-materials.html.pm # Section divider: "Materials"
 ├── chapter-01.html.pm       # "Getting Started" (Materials section)
+├── chapter-02.html.pm       # "Getting Set Up" (Materials section)
+├── chapter-03.html.pm       # "Infinite Regression" (Materials section)
 ├── section-technique.html.pm# Section divider: "Technique"
 ├── chapter-10.html.pm       # "The Show" (Technique section)
 ├── section-ripple.html.pm   # Section divider: "Ripple Effects"
 ├── poem-10.html.pm          # "Blasphemy" (Ripple Effects section)
-├── chapter-02–09.html.pm    # Drafts (not in index.ptree)
-├── poem-01–09.html.pm       # Drafts (not in index.ptree)
-├── puttering.html.pm        # Draft (not in index.ptree)
 │
 ├── styles.css.pp            # Pollen preprocessor CSS (variables/logic in CSS)
 ├── fonts/                   # Cooper Light/Medium/Bold, TT Disruptors (woff/woff2)
@@ -174,7 +173,7 @@ Font files in `fonts/` — same fonts used on suburbandadmode.com (sourced from 
 - **File naming:** `chapter-01.html.pm`, `poem-01.html.pm` (zero-padded for sort order)
 - **Semantic tags:** Use meaningful names (`◊chapter-title{...}`, `◊epigraph{...}`, `◊dialogue{...}`) rather than raw HTML tags. Define rendering in `pollen.rkt`.
 - **One concern per file:** Content in `.pm` files, presentation logic in `pollen.rkt`, layout in templates, styling in `styles.css.pp`.
-- **Drafts:** Files not listed in `index.ptree` (e.g., `puttering.html.pm`) are drafts — they exist in the repo but aren't part of the book's navigation or TOC.
+- **Drafts:** `.pm` files not listed in `index.ptree` are drafts — they exist in the repo but aren't part of the book's navigation or TOC. Currently there are no draft files.
 - **Preview often:** Run `raco pollen start` and check the browser dashboard at `http://localhost:8080/index.ptree`
 - **Cache issues:** See the "Restarting the Dev Server" section below — `raco pollen reset` alone is not enough
 
