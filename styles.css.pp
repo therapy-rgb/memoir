@@ -240,6 +240,26 @@ header {
   font-style: italic;
 }
 
+◊; ——— Section divider pages ———
+◊; Part title pages between sections — centered vertically and horizontally
+
+.section-page main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+}
+
+.section-title {
+  font-family: ◊|heading-font|;
+  font-size: 1.6em;
+  font-weight: bold;
+  font-variant: small-caps;
+  letter-spacing: 0.1em;
+  text-align: center;
+  color: var(--accent-color);
+}
+
 ◊; ——— Headings ———
 
 .chapter-title {
