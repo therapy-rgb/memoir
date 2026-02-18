@@ -18,7 +18,12 @@
       (define nxt (next node))
       (if nxt
         (let ([title (select-from-metas 'title nxt)]
-              [section (or (select-from-metas 'section nxt) "")])
+              [section (or (select-from-metas 'section nxt) "")]
+              [tmpl (or (select-from-metas 'template nxt) "")])
+          ;; Skip section divider pages — the TOC headings already label sections
+          (if (string=? tmpl "template-section.html")
+            (loop nxt front prose-buf technique-buf ripple-buf poems-buf back)
+          (let ()
           (define entry (format "<a class=\"toc-entry~a\" href=\"~a\">~a</a>\n"
                           (if (string=? section "poems") " toc-poem" "") nxt title))
           (cond
@@ -35,7 +40,7 @@
              (loop nxt (string-append front entry) prose-buf technique-buf ripple-buf poems-buf back)]
             ;; After all sections, it's back-matter
             [else
-             (loop nxt front prose-buf technique-buf ripple-buf poems-buf (string-append back entry))]))
+             (loop nxt front prose-buf technique-buf ripple-buf poems-buf (string-append back entry))]))))
         ;; Assemble: front, Materials, Technique, Ripple Effects, Poems, back
         (string-append
           front
