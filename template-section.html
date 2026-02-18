@@ -7,11 +7,21 @@
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme');
+      if (t) {
+        document.documentElement.setAttribute('data-theme', t);
+        document.querySelector('meta[name="color-scheme"]').setAttribute('content', t);
+      }
+    })();
+  </script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="section-page">
   <header>
     <a class="home-link" href="title.html">Methodology</a>
+    <button class="theme-toggle" aria-label="Toggle theme"></button>
   </header>
   <main>
     <h1 class="section-title">◊(select-from-metas 'title here)</h1>
@@ -29,6 +39,38 @@
       if (e.key === 'ArrowLeft')  { var a = document.querySelector('.nav-prev'); if (a) a.click(); }
       if (e.key === 'ArrowRight') { var a = document.querySelector('.nav-next'); if (a) a.click(); }
     });
+    (function() {
+      var icons = { light: '\u2600\uFE0E', system: '\u25D1', dark: '\u263E\uFE0E' };
+      var order = ['system', 'light', 'dark'];
+      var labels = { system: 'Theme: auto', light: 'Theme: light', dark: 'Theme: dark' };
+      function get() { return localStorage.getItem('theme') || 'system'; }
+      function set(t) {
+        if (t === 'system') {
+          localStorage.removeItem('theme');
+          document.documentElement.removeAttribute('data-theme');
+          document.querySelector('meta[name="color-scheme"]').setAttribute('content', 'light dark');
+        } else {
+          localStorage.setItem('theme', t);
+          document.documentElement.setAttribute('data-theme', t);
+          document.querySelector('meta[name="color-scheme"]').setAttribute('content', t);
+        }
+        update();
+      }
+      function update() {
+        var btn = document.querySelector('.theme-toggle');
+        if (!btn) return;
+        var t = get();
+        btn.textContent = icons[t];
+        btn.setAttribute('title', labels[t]);
+        btn.setAttribute('aria-label', labels[t]);
+      }
+      var btn = document.querySelector('.theme-toggle');
+      if (btn) btn.addEventListener('click', function() {
+        var t = get();
+        set(order[(order.indexOf(t) + 1) % 3]);
+      });
+      update();
+    })();
   </script>
 </body>
 </html>
