@@ -53,13 +53,17 @@ memoir/
 ├── template.html            # Default HTML template (prose chapters)
 ├── template-poems.html      # Poem pages (body class "poems-page")
 ├── template-title.html      # Title page with table of contents
+├── template-section.html    # Section divider pages (vertically centered title)
 │
 ├── title.html.pm            # Title page
 ├── author.html.pm           # Author bio
 ├── preface.html.pm          # Preface
 ├── notes.html.pm            # Colophon / notes
+├── section-materials.html.pm # Section divider: "Materials"
 ├── chapter-01.html.pm       # "Getting Started" (Materials section)
+├── section-technique.html.pm# Section divider: "Technique"
 ├── chapter-10.html.pm       # "The Show" (Technique section)
+├── section-ripple.html.pm   # Section divider: "Ripple Effects"
 ├── poem-10.html.pm          # "Blasphemy" (Ripple Effects section)
 ├── chapter-02–09.html.pm    # Drafts (not in index.ptree)
 ├── poem-01–09.html.pm       # Drafts (not in index.ptree)
@@ -76,7 +80,8 @@ memoir/
 - **`index.ptree`** — The table of contents. Lists output filenames in reading order. Navigation (previous/next) derived from this.
 - **`template.html`** — Default HTML template for prose chapters. Receives `doc` (content) and `here` (current page). Handles header, nav, footer.
 - **`template-poems.html`** — Template for poem pages. Same structure as `template.html` but adds a `poems-page` body class for poem-specific styling.
-- **`template-title.html`** — Title page template. Builds the table of contents dynamically, grouping entries into four collapsible sections (Materials, Technique, Ripple Effects, Poems) using the `section` meta. Front-matter entries (Author, Preface, Notes) appear as standalone links above sections.
+- **`template-section.html`** — Section divider page template. Displays the section name vertically centered. Used by `section-*.html.pm` files. These pages are automatically skipped in the TOC.
+- **`template-title.html`** — Title page template. Builds the table of contents dynamically, grouping entries into four collapsible sections (Materials, Technique, Ripple Effects, Poems) using the `section` meta. Front-matter entries (Author, Preface, Notes) appear as standalone links above sections. Section divider pages (template-section.html) are filtered out of the TOC.
 - **`styles.css.pp`** — CSS with Pollen preprocessing (use `◊` for variables, logic). Typography inspired by Butterick's Practical Typography. Paragraphs use space-between (no first-line indent).
 - **`*.html.pm`** — Chapter/page source files in Pollen Markup.
 
