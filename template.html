@@ -9,11 +9,10 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <script>
     (function() {
-      var t = localStorage.getItem('theme');
-      if (t) {
-        document.documentElement.setAttribute('data-theme', t);
-        document.querySelector('meta[name="color-scheme"]').setAttribute('content', t);
-      }
+      var t = localStorage.getItem('theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+      document.querySelector('meta[name="color-scheme"]').setAttribute('content', t);
     })();
   </script>
   <link rel="stylesheet" href="styles.css">
@@ -40,34 +39,29 @@
       if (e.key === 'ArrowRight') { var a = document.querySelector('.nav-next'); if (a) a.click(); }
     });
     (function() {
-      var icons = { light: '\u2600\uFE0E', system: '\u25D1', dark: '\u263E\uFE0E' };
-      var order = ['system', 'light', 'dark'];
-      var labels = { system: 'Theme: auto', light: 'Theme: light', dark: 'Theme: dark' };
-      function get() { return localStorage.getItem('theme') || 'system'; }
+      function getSystem() {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      function get() { return localStorage.getItem('theme') || getSystem(); }
       function set(t) {
-        if (t === 'system') {
-          localStorage.removeItem('theme');
-          document.documentElement.removeAttribute('data-theme');
-          document.querySelector('meta[name="color-scheme"]').setAttribute('content', 'light dark');
-        } else {
-          localStorage.setItem('theme', t);
-          document.documentElement.setAttribute('data-theme', t);
-          document.querySelector('meta[name="color-scheme"]').setAttribute('content', t);
-        }
+        localStorage.setItem('theme', t);
+        document.documentElement.setAttribute('data-theme', t);
+        document.querySelector('meta[name="color-scheme"]').setAttribute('content', t);
         update();
       }
       function update() {
         var btn = document.querySelector('.theme-toggle');
         if (!btn) return;
         var t = get();
-        btn.textContent = icons[t];
-        btn.setAttribute('title', labels[t]);
-        btn.setAttribute('aria-label', labels[t]);
+        var icon = t === 'dark' ? '\u263E\uFE0E' : '\u2600\uFE0E';
+        var label = t === 'dark' ? 'Dark mode' : 'Light mode';
+        btn.innerHTML = '<span class="theme-toggle-icon">' + icon + '</span>' + label;
+        btn.setAttribute('title', label);
+        btn.setAttribute('aria-label', label);
       }
       var btn = document.querySelector('.theme-toggle');
       if (btn) btn.addEventListener('click', function() {
-        var t = get();
-        set(order[(order.indexOf(t) + 1) % 3]);
+        set(get() === 'dark' ? 'light' : 'dark');
       });
       update();
     })();

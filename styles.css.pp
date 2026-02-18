@@ -172,12 +172,18 @@ header {
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 1em;
-  padding: 0.3em 0.4em;
+  font-family: ◊|body-font|;
+  font-size: 0.7em;
+  padding: 0.3em 0.5em;
   color: var(--accent-color);
   line-height: 1;
   border-radius: 4px;
   margin-left: auto;
+  letter-spacing: 0.02em;
+}
+
+.theme-toggle-icon {
+  margin-right: 0.3em;
 }
 
 .theme-toggle:hover {
