@@ -2,13 +2,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
   <title>Preface</title>
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+      document.querySelector('meta[name="color-scheme"]').setAttribute('content', t);
+    })();
+  </script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
     <a class="home-link" href="title.html">Methodology</a>
+    <button class="theme-toggle" aria-label="Toggle theme"></button>
   </header>
   <main>
     <root><h1 class="chapter-title">Preface</h1><p>Each project demands its proper place. I’d been tinkering with a personal website and developing a professional website for my private psychotherapy practice, using the latest AI coding tools, which makes all of this so much more powerful than a non-technical guy like me could ever have done before. Gone were the frustrations with <a href="https://www.squarespace.com/?channel=pbr&amp;subchannel=go&amp;campaign=pbr-go-us-en-core_squarespacealone-e&amp;subcampaign=(squarespace-alone_squarespace_e)&amp;gclsrc=aw.ds&amp;&amp;cid=15698980512&amp;aid=130361054086&amp;tid=kwd-1988643730&amp;mt=e&amp;eid=&amp;loc_p_ms=9001992&amp;loc_i_ms=&amp;nw=g&amp;d=c&amp;adid=599856897035&amp;channel2=pbr&amp;subchannel2=go&amp;gad_source=1&amp;gad_campaignid=15698980512&amp;gbraid=0AAAAADxS_FIQwCQEiz5PYSMgOBZ5qDKsT&amp;gclid=EAIaIQobChMIwezzmNrgkgMVOTEIBR34JgTjEAAYASAAEgIDXPD_BwE" target="_blank" rel="noopener">Squarespace</a> dragging text boxes to try to be the right size. I could just say what I wanted and see it happen and iterate, getting clearer on what I wanted each project to do and how I wanted them to look.</p><p>I’d come across <a href="https://practicaltypography.com/" target="_blank" rel="noopener">Butterick’s Practical Typography</a> via some web designer’s personal website, which led me to his take on the potential for publishing web-based books. I was immediately in love. I adore books and publishing and have wrestled with many formats over the years, from hand-written letters and self-published paperback books, to websites. Butterick showed me that a web-based book didn’t have to look like other websites. It should look like a book. Not epub or pdf books, but a vibrant, easily navigable online resource. And he created the programming language to make that process infinitely easier and more aesthetically fitting.</p><p>But I don’t have the time or interest to really learn programming languages. So I pointed <a href="https://code.claude.com/docs" target="_blank" rel="noopener">Claude Code</a> to Butterick’s documentation and had it set things up. Sure, there was plenty of troubleshooting on my end, but after a few hours I had a pretty solid set-up and a live website where the project could be accessed.</p><p>A professional website is like a modern, fancy business card; a blog is for thinking out loud and sharing photos. A book is, well, whatever you want it to be, but for nonfiction, it usually addresses a specific slice of subject matter with a degree of detail, clarity, and depth.</p><p>This book is about methodology. I lean heavily into my personal and professional experience, scooping up some of the metaphysics and critical thinking I took with me from an undergraduate philosophy degree. But the technical side will still be expressed in plain-language and poetical style, using my authorial voice to evoke more than argue. It’s mostly about pointing out what pops out to me, and asking questions about what can’t be easily explained.</p></root>
@@ -22,6 +34,33 @@
       if (e.key === 'ArrowLeft')  { var a = document.querySelector('.nav-prev'); if (a) a.click(); }
       if (e.key === 'ArrowRight') { var a = document.querySelector('.nav-next'); if (a) a.click(); }
     });
+    (function() {
+      function getSystem() {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      function get() { return localStorage.getItem('theme') || getSystem(); }
+      function set(t) {
+        localStorage.setItem('theme', t);
+        document.documentElement.setAttribute('data-theme', t);
+        document.querySelector('meta[name="color-scheme"]').setAttribute('content', t);
+        update();
+      }
+      function update() {
+        var btn = document.querySelector('.theme-toggle');
+        if (!btn) return;
+        var t = get();
+        var icon = t === 'dark' ? '\u263E\uFE0E' : '\u2600\uFE0E';
+        var label = t === 'dark' ? 'Dark mode' : 'Light mode';
+        btn.innerHTML = '<span class="theme-toggle-icon">' + icon + '</span>' + label;
+        btn.setAttribute('title', label);
+        btn.setAttribute('aria-label', label);
+      }
+      var btn = document.querySelector('.theme-toggle');
+      if (btn) btn.addEventListener('click', function() {
+        set(get() === 'dark' ? 'light' : 'dark');
+      });
+      update();
+    })();
   </script>
 </body>
 </html>

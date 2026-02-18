@@ -2,19 +2,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
   <title>Getting Started</title>
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+      document.querySelector('meta[name="color-scheme"]').setAttribute('content', t);
+    })();
+  </script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
     <a class="home-link" href="title.html">Methodology</a>
+    <button class="theme-toggle" aria-label="Toggle theme"></button>
   </header>
   <main>
     <root><h1 class="chapter-title">Getting Started</h1><p>Aristotle was big on finding a starting point. That sounds simple, but we live always in the middle of things, never fully able to step outside of circumstances. My current circumstances are that I’m at the <a href="https://sevenstarsbakery.com/location/cranston/" target="_blank" rel="noopener">Seven Stars Bakery</a> in Cranston, Rhode Island, a short drive from my house, most of the way through a coffee that I’ll soon get refilled. The bakery is buzzing with chatter and espresso-making. I absolutely love cafe writing. The sounds around me that demand nothing from me create the perfect white noise for me to focus within. It’s as good a starting point as any.</p><p>An essential property of any writing is that you have to be able to stop doing any other life things in that particular moment. You step as far outside of circumstances, at least those that you are an active participant in, as you can. You can’t feed a baby and write at the same time, or call a contractor to get a bid to fix the gutters, or wash the dishes and also write. You can’t think really, let alone actually put down words on the page.</p><p>Writing shares this quality with meditation. You stop your other active living, you step aside, you dive in. Of course, you’re not actually outside of life, but you are as much outside of it as you can be. And from there, you have a distinct perspective, one that allows for integrating old experiences and creating new ones.</p><p>The barista has refilled my coffee and I’ve written a bit. Precisely what I came here to do. Prior to the actual writing, I completed a round of <em>getting set up</em>, which I’ll go over in the next chapter.</p></root>
   </main>
   <nav>
-    <a class="nav-prev" href="notes.html">&larr; Notes</a>
+    <a class="nav-prev" href="section-materials.html">&larr; Materials</a>
     <a class="nav-next" href="chapter-02.html">Getting Set Up &rarr;</a>
   </nav>
   <script>
@@ -22,6 +34,33 @@
       if (e.key === 'ArrowLeft')  { var a = document.querySelector('.nav-prev'); if (a) a.click(); }
       if (e.key === 'ArrowRight') { var a = document.querySelector('.nav-next'); if (a) a.click(); }
     });
+    (function() {
+      function getSystem() {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      function get() { return localStorage.getItem('theme') || getSystem(); }
+      function set(t) {
+        localStorage.setItem('theme', t);
+        document.documentElement.setAttribute('data-theme', t);
+        document.querySelector('meta[name="color-scheme"]').setAttribute('content', t);
+        update();
+      }
+      function update() {
+        var btn = document.querySelector('.theme-toggle');
+        if (!btn) return;
+        var t = get();
+        var icon = t === 'dark' ? '\u263E\uFE0E' : '\u2600\uFE0E';
+        var label = t === 'dark' ? 'Dark mode' : 'Light mode';
+        btn.innerHTML = '<span class="theme-toggle-icon">' + icon + '</span>' + label;
+        btn.setAttribute('title', label);
+        btn.setAttribute('aria-label', label);
+      }
+      var btn = document.querySelector('.theme-toggle');
+      if (btn) btn.addEventListener('click', function() {
+        set(get() === 'dark' ? 'light' : 'dark');
+      });
+      update();
+    })();
   </script>
 </body>
 </html>

@@ -2,26 +2,65 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
   <title>Notes</title>
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+      document.querySelector('meta[name="color-scheme"]').setAttribute('content', t);
+    })();
+  </script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
     <a class="home-link" href="title.html">Methodology</a>
+    <button class="theme-toggle" aria-label="Toggle theme"></button>
   </header>
   <main>
     <root><h1 class="chapter-title">Notes</h1><p>Produced with <a href="https://docs.racket-lang.org/pollen/index.html" target="_blank" rel="noopener">Pollen</a>, built on Racket by Matthew Butterick. Published via <a href="https://docs.github.com/en/pages" target="_blank" rel="noopener">GitHub Pages</a>.</p><p>Fonts: <a href="https://www.paratype.com/fonts/pt/cooper" target="_blank" rel="noopener">Cooper</a> &amp; <a href="https://typetype.org/fonts/tt-disruptors/#buying-options" target="_blank" rel="noopener">TT Disruptors</a><br/>AI Coding: <a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener">Claude Code</a></p><p>Contact: therapy@marcusberley.com</p><p>© 2026 Marcus Berley</p></root>
   </main>
   <nav>
     <a class="nav-prev" href="preface.html">&larr; Preface</a>
-    <a class="nav-next" href="chapter-01.html">Getting Started &rarr;</a>
+    <a class="nav-next" href="section-materials.html">Materials &rarr;</a>
   </nav>
   <script>
     document.addEventListener('keydown', function(e) {
       if (e.key === 'ArrowLeft')  { var a = document.querySelector('.nav-prev'); if (a) a.click(); }
       if (e.key === 'ArrowRight') { var a = document.querySelector('.nav-next'); if (a) a.click(); }
     });
+    (function() {
+      function getSystem() {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      function get() { return localStorage.getItem('theme') || getSystem(); }
+      function set(t) {
+        localStorage.setItem('theme', t);
+        document.documentElement.setAttribute('data-theme', t);
+        document.querySelector('meta[name="color-scheme"]').setAttribute('content', t);
+        update();
+      }
+      function update() {
+        var btn = document.querySelector('.theme-toggle');
+        if (!btn) return;
+        var t = get();
+        var icon = t === 'dark' ? '\u263E\uFE0E' : '\u2600\uFE0E';
+        var label = t === 'dark' ? 'Dark mode' : 'Light mode';
+        btn.innerHTML = '<span class="theme-toggle-icon">' + icon + '</span>' + label;
+        btn.setAttribute('title', label);
+        btn.setAttribute('aria-label', label);
+      }
+      var btn = document.querySelector('.theme-toggle');
+      if (btn) btn.addEventListener('click', function() {
+        set(get() === 'dark' ? 'light' : 'dark');
+      });
+      update();
+    })();
   </script>
 </body>
 </html>

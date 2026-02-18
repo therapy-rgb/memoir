@@ -2,19 +2,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
   <title>Blasphemy</title>
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+      document.querySelector('meta[name="color-scheme"]').setAttribute('content', t);
+    })();
+  </script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="poems-page">
   <header>
     <a class="home-link" href="title.html">Methodology</a>
+    <button class="theme-toggle" aria-label="Toggle theme"></button>
   </header>
   <main>
     <root><div class="poem">In the words of the wise<br/>Everyone swimmmmmmms<br/>We don’t ever truly know nothing, the bastards keep coming</div></root>
   </main>
   <nav>
-    <a class="nav-prev" href="chapter-10.html">&larr; The Show</a>
+    <a class="nav-prev" href="section-ripple.html">&larr; Ripple Effects</a>
 
   </nav>
   <script>
@@ -22,6 +34,33 @@
       if (e.key === 'ArrowLeft')  { var a = document.querySelector('.nav-prev'); if (a) a.click(); }
       if (e.key === 'ArrowRight') { var a = document.querySelector('.nav-next'); if (a) a.click(); }
     });
+    (function() {
+      function getSystem() {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      function get() { return localStorage.getItem('theme') || getSystem(); }
+      function set(t) {
+        localStorage.setItem('theme', t);
+        document.documentElement.setAttribute('data-theme', t);
+        document.querySelector('meta[name="color-scheme"]').setAttribute('content', t);
+        update();
+      }
+      function update() {
+        var btn = document.querySelector('.theme-toggle');
+        if (!btn) return;
+        var t = get();
+        var icon = t === 'dark' ? '\u263E\uFE0E' : '\u2600\uFE0E';
+        var label = t === 'dark' ? 'Dark mode' : 'Light mode';
+        btn.innerHTML = '<span class="theme-toggle-icon">' + icon + '</span>' + label;
+        btn.setAttribute('title', label);
+        btn.setAttribute('aria-label', label);
+      }
+      var btn = document.querySelector('.theme-toggle');
+      if (btn) btn.addEventListener('click', function() {
+        set(get() === 'dark' ? 'light' : 'dark');
+      });
+      update();
+    })();
   </script>
 </body>
 </html>
