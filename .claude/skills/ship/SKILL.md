@@ -32,7 +32,7 @@ Clean the publish output — remove non-site files and stray assets that aren't 
 ```bash
 rm -rf /tmp/memoir-publish/.claude /tmp/memoir-publish/.github /tmp/memoir-publish/.playwright-mcp /tmp/memoir-publish/CLAUDE.md /tmp/memoir-publish/README.md /tmp/memoir-publish/template.html /tmp/memoir-publish/template-poems.html /tmp/memoir-publish/template-title.html /tmp/memoir-publish/puttering.html /tmp/memoir-publish/images
 # Remove any stray screenshots/PNGs in the root
-find /tmp/memoir-publish -maxdepth 1 -name '*.png' -delete
+command find /tmp/memoir-publish -maxdepth 1 -name '*.png' -delete
 ```
 Switch to `gh-pages`, replace all files, commit, and force push:
 ```bash
@@ -59,6 +59,9 @@ Switch back to main:
 git -C /Users/marcusberley/Documents/Projects/memoir checkout main
 ```
 
-### 5. Summary
+### 5. Document significant changes
+If the shipped changes affect project conventions, structure, or workflow (e.g., new tag functions, template changes, new fonts, changed metadata conventions), update `CLAUDE.md` to reflect them. Skip this step for pure content or minor styling tweaks.
+
+### 6. Summary
 Report what was shipped: commit hash, files changed, and confirm GitHub Pages deploy was pushed.
 Site URL: https://methodology.pub
