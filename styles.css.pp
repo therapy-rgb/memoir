@@ -19,8 +19,23 @@
 ◊(define max-width "33em")
 
 ◊; ——— Color scheme (light / dark) ———
-◊; Colors are defined as CSS custom properties so the browser
-◊; can swap them at runtime based on the user's OS setting.
+◊; Colors are CSS custom properties. Dark mode activates via:
+◊;   1. OS preference (media query) — unless the user explicitly chose light
+◊;   2. User toggle (data-theme="dark" on <html>)
+◊; Dark values are Pollen variables so they stay in sync across both rules.
+
+◊(define dark-text "#d4d4d4")
+◊(define dark-bg "#1a1a1a")
+◊(define dark-accent "#999")
+◊(define dark-link "#e07a8f")
+◊(define dark-link-hover-bg "#2a3a2e")
+◊(define dark-border "#3a3a3a")
+◊(define dark-toc-border "#333")
+◊(define dark-toc-hover "#e8a070")
+◊(define dark-toc-heading-hover "#d4a84a")
+◊(define dark-home-hover-color "#1a1a1a")
+◊(define dark-home-hover-bg "#d4d4d4")
+◊(define dark-nav-hover-bg "#1e2d3d")
 
 :root {
   color-scheme: light dark;
@@ -39,21 +54,41 @@
   --nav-hover-bg: #e3f2fd;
 }
 
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"]  { color-scheme: dark; }
+
+◊; System preference: apply dark unless user forced light
 @media (prefers-color-scheme: dark) {
-  :root {
-    --text-color: #d4d4d4;
-    --bg-color: #1a1a1a;
-    --accent-color: #999;
-    --link-color: #e07a8f;
-    --link-hover-bg: #2a3a2e;
-    --border-color: #3a3a3a;
-    --toc-border-color: #333;
-    --toc-hover-color: #e8a070;
-    --toc-heading-hover: #d4a84a;
-    --home-hover-color: #1a1a1a;
-    --home-hover-bg: #d4d4d4;
-    --nav-hover-bg: #1e2d3d;
+  :root:not([data-theme="light"]) {
+    --text-color: ◊|dark-text|;
+    --bg-color: ◊|dark-bg|;
+    --accent-color: ◊|dark-accent|;
+    --link-color: ◊|dark-link|;
+    --link-hover-bg: ◊|dark-link-hover-bg|;
+    --border-color: ◊|dark-border|;
+    --toc-border-color: ◊|dark-toc-border|;
+    --toc-hover-color: ◊|dark-toc-hover|;
+    --toc-heading-hover: ◊|dark-toc-heading-hover|;
+    --home-hover-color: ◊|dark-home-hover-color|;
+    --home-hover-bg: ◊|dark-home-hover-bg|;
+    --nav-hover-bg: ◊|dark-nav-hover-bg|;
   }
+}
+
+◊; Explicit dark override from user toggle
+:root[data-theme="dark"] {
+  --text-color: ◊|dark-text|;
+  --bg-color: ◊|dark-bg|;
+  --accent-color: ◊|dark-accent|;
+  --link-color: ◊|dark-link|;
+  --link-hover-bg: ◊|dark-link-hover-bg|;
+  --border-color: ◊|dark-border|;
+  --toc-border-color: ◊|dark-toc-border|;
+  --toc-hover-color: ◊|dark-toc-hover|;
+  --toc-heading-hover: ◊|dark-toc-heading-hover|;
+  --home-hover-color: ◊|dark-home-hover-color|;
+  --home-hover-bg: ◊|dark-home-hover-bg|;
+  --nav-hover-bg: ◊|dark-nav-hover-bg|;
 }
 
 ◊; ——— @font-face declarations ———
@@ -123,7 +158,30 @@ main {
 ◊; ——— Site header ———
 
 header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 3rem;
+}
+
+.title-page header {
+  margin-bottom: 1rem;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+  padding: 0.3em 0.4em;
+  color: var(--accent-color);
+  line-height: 1;
+  border-radius: 4px;
+  margin-left: auto;
+}
+
+.theme-toggle:hover {
+  background-color: var(--nav-hover-bg);
 }
 
 .home-link {
