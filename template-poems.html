@@ -10,10 +10,11 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <script>
     (function() {
-      var t = localStorage.getItem('theme') ||
-        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      document.documentElement.setAttribute('data-theme', t);
-      document.querySelector('meta[name="color-scheme"]').setAttribute('content', t);
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') {
+        document.documentElement.setAttribute('data-theme', t);
+        document.querySelector('meta[name="color-scheme"]').setAttribute('content', t);
+      }
     })();
   </script>
   <link rel="stylesheet" href="styles.css">
@@ -40,29 +41,53 @@
       if (e.key === 'ArrowRight') { var a = document.querySelector('.nav-next'); if (a) a.click(); }
     });
     (function() {
-      function getSystem() {
+      function getSysPref() {
         return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       }
-      function get() { return localStorage.getItem('theme') || getSystem(); }
-      function set(t) {
-        localStorage.setItem('theme', t);
-        document.documentElement.setAttribute('data-theme', t);
-        document.querySelector('meta[name="color-scheme"]').setAttribute('content', t);
+      function getStored() {
+        var s = localStorage.getItem('theme');
+        return (s === 'light' || s === 'dark') ? s : 'system';
+      }
+      function next(stored) {
+        var sys = getSysPref();
+        if (stored === 'system') return sys === 'light' ? 'dark' : 'light';
+        if (stored === sys) return 'system';
+        return sys;
+      }
+      function apply(stored) {
+        if (stored === 'light' || stored === 'dark') {
+          localStorage.setItem('theme', stored);
+          document.documentElement.setAttribute('data-theme', stored);
+          document.querySelector('meta[name="color-scheme"]').setAttribute('content', stored);
+        } else {
+          localStorage.removeItem('theme');
+          document.documentElement.removeAttribute('data-theme');
+          document.querySelector('meta[name="color-scheme"]').setAttribute('content', 'light dark');
+        }
         update();
       }
       function update() {
         var btn = document.querySelector('.theme-toggle');
         if (!btn) return;
-        var t = get();
-        var icon = t === 'dark' ? '\u263E\uFE0E' : '\u2600\uFE0E';
-        var label = t === 'dark' ? 'Dark mode' : 'Light mode';
+        var stored = getStored();
+        var icon, label;
+        if (stored === 'system') {
+          icon = '<svg aria-hidden="true" width="14" height="11" viewBox="0 0 14 11" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px"><rect x="0.6" y="0.6" width="12.8" height="7.4" rx="1.2"/><path d="M5.5 8l-.5 2h4l-.5-2"/><line x1="3" y1="10" x2="11" y2="10"/></svg>';
+          label = 'System';
+        } else if (stored === 'dark') {
+          icon = '\u263E\uFE0E';
+          label = 'Dark';
+        } else {
+          icon = '\u2600\uFE0E';
+          label = 'Light';
+        }
         btn.innerHTML = '<span class="theme-toggle-icon">' + icon + '</span>' + label;
-        btn.setAttribute('title', label);
-        btn.setAttribute('aria-label', label);
+        btn.setAttribute('title', label + ' mode');
+        btn.setAttribute('aria-label', label + ' mode');
       }
       var btn = document.querySelector('.theme-toggle');
       if (btn) btn.addEventListener('click', function() {
-        set(get() === 'dark' ? 'light' : 'dark');
+        apply(next(getStored()));
       });
       update();
     })();
