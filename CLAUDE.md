@@ -70,7 +70,7 @@ memoir/
 │
 ├── styles.css.pp            # Pollen preprocessor CSS (variables/logic in CSS)
 ├── fonts/                   # Cooper Light/Medium/Bold, TT Disruptors (woff/woff2)
-└── images/                  # Static assets
+└── images/                  # Photos and figures (referenced via ◊figure tag)
 ```
 
 ## Key Files
@@ -81,7 +81,7 @@ memoir/
 - **`template-poems.html`** — Template for poem pages. Same structure as `template.html` but adds a `poems-page` body class for poem-specific styling.
 - **`template-section.html`** — Section divider page template. Displays the section name vertically centered. Used by `section-*.html.pm` files. These pages are automatically skipped in the TOC.
 - **`template-title.html`** — Title page template. Builds the table of contents dynamically, grouping entries into four collapsible sections (Materials, Technique, Ripple Effects, Poems) using the `section` meta. Front-matter entries (Author, Preface, Notes) appear as standalone links above sections. Section divider pages (template-section.html) are filtered out of the TOC.
-- **`styles.css.pp`** — CSS with Pollen preprocessing (use `◊` for variables, logic). Typography inspired by Butterick's Practical Typography. Paragraphs use space-between (no first-line indent).
+- **`styles.css.pp`** — CSS with Pollen preprocessing (use `◊` for variables, logic). Typography inspired by Butterick's Practical Typography. Paragraphs use space-between (no first-line indent). Dark-mode colors are defined as Pollen variables (`dark-text`, `dark-bg`, etc.) and used in both the `@media` query and the `[data-theme="dark"]` rule.
 - **`*.html.pm`** — Chapter/page source files in Pollen Markup.
 
 ## Tag Functions
@@ -103,6 +103,7 @@ All defined in `pollen.rkt`. Use these in `.pm` files:
 | `◊poem{...}` | Poem block (preserves line breaks) | `<div class="poem">` |
 | `◊book-title{...}` | Title page heading | `<h1 class="book-title">` |
 | `◊book-subtitle{...}` | Title page subtitle | `<p class="book-subtitle">` |
+| `◊figure["path"]{...}` | Image with optional caption | `<figure><img><figcaption>` |
 | `◊link["url"]{...}` | Hyperlink (URL must be quoted) | `<a href="url">` |
 
 ## Metadata Conventions
@@ -157,6 +158,19 @@ Source (.pm) → Pollen Parser → X-expression → Template → Output (.html)
 - `(previous here)` — previous page in sequence
 - `(next here)` — next page in sequence
 - `(up here)` — parent page in hierarchy
+
+## Theme Toggle
+
+Every template includes a three-way theme toggle button (`.theme-toggle`) in the `<header>`:
+- **System** (◑) — follows OS `prefers-color-scheme` (default)
+- **Light** (☀) — forces light mode
+- **Dark** (☾) — forces dark mode
+
+The user's choice is persisted in `localStorage('theme')`. A small inline `<script>` in `<head>` applies the saved theme before CSS loads to prevent flash. The toggle cycles: system → light → dark → system.
+
+CSS uses two selectors for dark mode:
+- `@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) }` — system preference, unless user forced light
+- `:root[data-theme="dark"]` — explicit dark override from the toggle
 
 ## Fonts
 

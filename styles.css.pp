@@ -448,6 +448,49 @@ strong {
   font-size: 1.1em;
 }
 
+◊; ——— Figures / Images ———
+
+figure {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+figure img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+◊; Author portrait: keep headshot small relative to text
+[data-page="author.html"] .chapter-title + figure img {
+  max-width: 50%;
+}
+
+[data-page="preface.html"] .chapter-title + figure img {
+  max-width: 75%;
+}
+
+figcaption {
+  font-size: 0.85em;
+  color: var(--accent-color);
+  margin-top: 0.5rem;
+  text-indent: 0;
+}
+
+◊; Dark mode: subtle border on images so they don't float against dark bg
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) figure img {
+    border: 1px solid ◊|dark-border|;
+    border-radius: 2px;
+  }
+}
+
+:root[data-theme="dark"] figure img {
+  border: 1px solid ◊|dark-border|;
+  border-radius: 2px;
+}
+
 ◊; ——— Links ———
 ◊; Inspired by Practical Typography: small caps + color shift, no underline
 

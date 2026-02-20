@@ -30,7 +30,7 @@ raco pollen publish /Users/marcusberley/Documents/Projects/memoir /tmp/memoir-pu
 ```
 Clean the publish output — remove non-site files and stray assets that aren't part of the site:
 ```bash
-rm -rf /tmp/memoir-publish/.claude /tmp/memoir-publish/.github /tmp/memoir-publish/.playwright-mcp /tmp/memoir-publish/CLAUDE.md /tmp/memoir-publish/README.md /tmp/memoir-publish/template.html /tmp/memoir-publish/template-poems.html /tmp/memoir-publish/template-title.html /tmp/memoir-publish/puttering.html /tmp/memoir-publish/images
+rm -rf /tmp/memoir-publish/.claude /tmp/memoir-publish/.github /tmp/memoir-publish/.playwright-mcp /tmp/memoir-publish/CLAUDE.md /tmp/memoir-publish/README.md /tmp/memoir-publish/template.html /tmp/memoir-publish/template-poems.html /tmp/memoir-publish/template-title.html /tmp/memoir-publish/puttering.html
 # Remove any stray screenshots/PNGs in the root (but keep favicon PNGs)
 command find /tmp/memoir-publish -maxdepth 1 -name '*.png' ! -name 'apple-touch-icon.png' ! -name 'favicon-32x32.png' -delete
 ```
@@ -43,6 +43,7 @@ Copy published files into the repo, restore CNAME, and add `.nojekyll`:
 ```bash
 cp -R /tmp/memoir-publish/* /Users/marcusberley/Documents/Projects/memoir/
 cp -R /tmp/memoir-publish/fonts /Users/marcusberley/Documents/Projects/memoir/
+cp -R /tmp/memoir-publish/images /Users/marcusberley/Documents/Projects/memoir/
 echo "methodology.pub" > /Users/marcusberley/Documents/Projects/memoir/CNAME
 touch /Users/marcusberley/Documents/Projects/memoir/.nojekyll
 ```
