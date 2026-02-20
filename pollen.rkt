@@ -70,6 +70,17 @@
 (define (book-subtitle . elements)
   (txexpr 'p '((class "book-subtitle")) elements))
 
+;; Figures: image with optional caption
+;; Usage: ◊figure["images/photo.jpg"]{Caption text} or ◊figure["images/photo.jpg"]
+(define (figure src . elements)
+  (define caption-elements (filter (lambda (e) (not (equal? e ""))) elements))
+  (define img (txexpr 'img `((src ,src) (loading "lazy") (alt ,(if (pair? caption-elements)
+                                                                    (string-join (filter string? caption-elements) "")
+                                                                    ""))) empty))
+  (if (null? caption-elements)
+      (txexpr 'figure empty (list img))
+      (txexpr 'figure empty (list img (txexpr 'figcaption empty caption-elements)))))
+
 ;; Poetry: preserve line breaks within a poem block
 (define (poem . elements)
   (define text (string-join
