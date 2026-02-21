@@ -4,11 +4,13 @@
 
 ◊chapter-title{Notes}
 
-Produced with ◊link["https://docs.racket-lang.org/pollen/index.html"]{Pollen}, built on Racket by Matthew Butterick. Published via ◊link["https://docs.github.com/en/pages"]{GitHub Pages}.
+◊figure["images/typewriter.webp"]
 
-Cover Image: Midjourney
+Images: Midjourney
 Author Photo: ◊link["http://www.glennturnerphoto.com"]{Glenn Turner}
 Typography: ◊link["https://www.paratype.com/fonts/pt/cooper"]{Cooper} & ◊link["https://typetype.org/fonts/tt-disruptors/#buying-options"]{TT Disruptors}
+
+Produced with ◊link["https://docs.racket-lang.org/pollen/index.html"]{Pollen}, built on Racket by Matthew Butterick. Published via ◊link["https://docs.github.com/en/pages"]{GitHub Pages}.
 AI Coding: ◊link["https://code.claude.com/docs/en/overview"]{Claude Code}
 
 Contact: therapy@marcusberley.com
