@@ -79,7 +79,7 @@ memoir/
 - **`index.ptree`** — The table of contents. Lists output filenames in reading order. Navigation (previous/next) derived from this.
 - **`template.html`** — Default HTML template for prose chapters. Receives `doc` (content) and `here` (current page). Handles header, nav, footer.
 - **`template-poems.html`** — Template for poem pages. Same structure as `template.html` but adds a `poems-page` body class for poem-specific styling.
-- **`template-section.html`** — Section divider page template. Displays the section name vertically centered. Used by `section-*.html.pm` files. These pages are automatically skipped in the TOC.
+- **`template-section.html`** — Section divider page template. Displays the section name vertically centered, followed by any body content (e.g., images via `◊figure`). Used by `section-*.html.pm` files. These pages are automatically skipped in the TOC.
 - **`template-title.html`** — Title page template. Builds the table of contents dynamically, grouping entries into four collapsible sections (Materials, Technique, Ripple Effects, Poems) using the `section` meta. Front-matter entries (Author, Preface, Notes) appear as standalone links above sections. Section divider pages (template-section.html) are filtered out of the TOC.
 - **`styles.css.pp`** — CSS with Pollen preprocessing (use `◊` for variables, logic). Typography inspired by Butterick's Practical Typography. Paragraphs use space-between (no first-line indent). Dark-mode colors are defined as Pollen variables (`dark-text`, `dark-bg`, etc.) and used in both the `@media` query and the `[data-theme="dark"]` rule.
 - **`*.html.pm`** — Chapter/page source files in Pollen Markup.
