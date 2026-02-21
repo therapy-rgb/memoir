@@ -1,0 +1,132 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>◊(select-from-metas 'title here)</title>
+  <meta name="description" content="Methodology — a memoir by Marcus Berley. Journal entries from the first year of his daughter's life, plus poems written in stolen moments.">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') {
+        document.documentElement.setAttribute('data-theme', t);
+        document.querySelector('meta[name="color-scheme"]').setAttribute('content', t);
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="title-page">
+  <header>
+    <button class="theme-toggle" aria-label="Toggle theme"></button>
+  </header>
+  <main>
+    ◊(->html doc)
+  </main>
+  <nav class="toc">
+    ◊(let loop ([node here] [front ""] [prose-buf ""] [technique-buf ""] [ripple-buf ""] [poems-buf ""] [back ""])
+      (define nxt (next node))
+      (if nxt
+        (let ([title (select-from-metas 'title nxt)]
+              [section (or (select-from-metas 'section nxt) "")]
+              [tmpl (or (select-from-metas 'template nxt) "")])
+          ;; Skip section divider pages — the TOC headings already label sections
+          (if (string=? tmpl "template-section.html")
+            (loop nxt front prose-buf technique-buf ripple-buf poems-buf back)
+          (let ()
+          (define entry (format "<a class=\"toc-entry~a\" href=\"~a\">~a</a>\n"
+                          (if (string=? section "poems") " toc-poem" "") nxt title))
+          (cond
+            [(string=? section "prose")
+             (loop nxt front (string-append prose-buf entry) technique-buf ripple-buf poems-buf back)]
+            [(string=? section "technique")
+             (loop nxt front prose-buf (string-append technique-buf entry) ripple-buf poems-buf back)]
+            [(string=? section "ripple")
+             (loop nxt front prose-buf technique-buf (string-append ripple-buf entry) poems-buf back)]
+            [(string=? section "poems")
+             (loop nxt front prose-buf technique-buf ripple-buf (string-append poems-buf entry) back)]
+            ;; Before prose starts, it's a front-matter entry
+            [(string=? prose-buf "")
+             (loop nxt (string-append front entry) prose-buf technique-buf ripple-buf poems-buf back)]
+            ;; After all sections, it's back-matter
+            [else
+             (loop nxt front prose-buf technique-buf ripple-buf poems-buf (string-append back entry))]))))
+        ;; Assemble: front, Materials, Technique, Ripple Effects, Poems, back
+        (string-append
+          front
+          (if (> (string-length prose-buf) 0)
+            (format "<details class=\"toc-section\">\n<summary class=\"toc-section-heading\">Materials</summary>\n~a</details>\n" prose-buf)
+            "")
+          (if (> (string-length technique-buf) 0)
+            (format "<details class=\"toc-section\">\n<summary class=\"toc-section-heading\">Technique</summary>\n~a</details>\n" technique-buf)
+            "")
+          (if (> (string-length ripple-buf) 0)
+            (format "<details class=\"toc-section\">\n<summary class=\"toc-section-heading\">Ripple Effects</summary>\n~a</details>\n" ripple-buf)
+            "")
+          (if (> (string-length poems-buf) 0)
+            (format "<details class=\"toc-section\">\n<summary class=\"toc-section-heading\">Poems</summary>\n~a</details>\n" poems-buf)
+            "")
+          back)))
+  </nav>
+  <script>
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowLeft')  { var a = document.querySelector('.nav-prev'); if (a) a.click(); }
+      if (e.key === 'ArrowRight') { var a = document.querySelector('.nav-next'); if (a) a.click(); }
+    });
+    (function() {
+      function getSysPref() {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      function getStored() {
+        var s = localStorage.getItem('theme');
+        return (s === 'light' || s === 'dark') ? s : 'system';
+      }
+      function next(stored) {
+        var sys = getSysPref();
+        if (stored === 'system') return sys === 'light' ? 'dark' : 'light';
+        if (stored === sys) return 'system';
+        return sys;
+      }
+      function apply(stored) {
+        if (stored === 'light' || stored === 'dark') {
+          localStorage.setItem('theme', stored);
+          document.documentElement.setAttribute('data-theme', stored);
+          document.querySelector('meta[name="color-scheme"]').setAttribute('content', stored);
+        } else {
+          localStorage.removeItem('theme');
+          document.documentElement.removeAttribute('data-theme');
+          document.querySelector('meta[name="color-scheme"]').setAttribute('content', 'light dark');
+        }
+        update();
+      }
+      function update() {
+        var btn = document.querySelector('.theme-toggle');
+        if (!btn) return;
+        var stored = getStored();
+        var icon, label;
+        if (stored === 'system') {
+          icon = '<svg aria-hidden="true" width="14" height="11" viewBox="0 0 14 11" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px"><rect x="0.6" y="0.6" width="12.8" height="7.4" rx="1.2"/><path d="M5.5 8l-.5 2h4l-.5-2"/><line x1="3" y1="10" x2="11" y2="10"/></svg>';
+          label = 'System';
+        } else if (stored === 'dark') {
+          icon = '\u263E\uFE0E';
+          label = 'Dark';
+        } else {
+          icon = '\u2600\uFE0E';
+          label = 'Light';
+        }
+        btn.innerHTML = '<span class="theme-toggle-icon">' + icon + '</span>' + label;
+        btn.setAttribute('title', label + ' mode');
+        btn.setAttribute('aria-label', label + ' mode');
+      }
+      var btn = document.querySelector('.theme-toggle');
+      if (btn) btn.addEventListener('click', function() {
+        apply(next(getStored()));
+      });
+      update();
+    })();
+  </script>
+</body>
+</html>
