@@ -345,9 +345,14 @@ header {
 
 .section-page main {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 50vh;
+}
+
+.section-page figure img {
+  max-width: 65%;
 }
 
 .section-title {
@@ -505,6 +510,10 @@ figure img {
 
 [data-page="preface.html"] .chapter-title + figure img {
   max-width: 75%;
+}
+
+[data-page="notes.html"] figure img {
+  max-width: 65%;
 }
 
 figcaption {
