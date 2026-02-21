@@ -228,6 +228,42 @@ header {
   color: var(--accent-color);
   text-indent: 0;
   margin-bottom: 0;
+  width: 65%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: right;
+}
+
+.title-page figure {
+  margin-top: 2rem;
+}
+
+.title-page figure img {
+  max-width: 65%;
+}
+
+◊; Title page image: swap between light/dark versions
+◊; Light mode (default): show inverted (dark bg), hide original (light bg)
+.title-page figure:has(img[src*="title-grid.webp"]:not([src*="inverted"])) {
+  display: none;
+}
+
+◊; Dark mode via system preference
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .title-page figure:has(img[src*="inverted"]) {
+    display: none;
+  }
+  :root:not([data-theme="light"]) .title-page figure:has(img[src*="title-grid.webp"]:not([src*="inverted"])) {
+    display: block;
+  }
+}
+
+◊; Dark mode via toggle
+:root[data-theme="dark"] .title-page figure:has(img[src*="inverted"]) {
+  display: none;
+}
+:root[data-theme="dark"] .title-page figure:has(img[src*="title-grid.webp"]:not([src*="inverted"])) {
+  display: block;
 }
 
 ◊; ——— Table of contents ———
