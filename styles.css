@@ -184,6 +184,38 @@ header {
   color: var(--accent-color);
   text-indent: 0;
   margin-bottom: 0;
+  width: 65%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: right;
+}
+
+.title-page figure {
+  margin-top: 2rem;
+}
+
+.title-page figure img {
+  max-width: 65%;
+}
+
+.title-page figure:has(img[src*="title-grid.webp"]:not([src*="inverted"])) {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .title-page figure:has(img[src*="inverted"]) {
+    display: none;
+  }
+  :root:not([data-theme="light"]) .title-page figure:has(img[src*="title-grid.webp"]:not([src*="inverted"])) {
+    display: block;
+  }
+}
+
+:root[data-theme="dark"] .title-page figure:has(img[src*="inverted"]) {
+  display: none;
+}
+:root[data-theme="dark"] .title-page figure:has(img[src*="title-grid.webp"]:not([src*="inverted"])) {
+  display: block;
 }
 
 
@@ -384,6 +416,46 @@ strong {
 .handwritten {
   font-family: 'TT Disruptors', cursive;
   font-size: 1.1em;
+}
+
+
+figure {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+figure img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+[data-page="author.html"] .chapter-title + figure img {
+  max-width: 50%;
+}
+
+[data-page="preface.html"] .chapter-title + figure img {
+  max-width: 75%;
+}
+
+figcaption {
+  font-size: 0.85em;
+  color: var(--accent-color);
+  margin-top: 0.5rem;
+  text-indent: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) figure img {
+    border: 1px solid #3a3a3a;
+    border-radius: 2px;
+  }
+}
+
+:root[data-theme="dark"] figure img {
+  border: 1px solid #3a3a3a;
+  border-radius: 2px;
 }
 
 
