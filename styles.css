@@ -278,12 +278,21 @@ header {
   display: none;
 }
 
-.toc-section-heading::after {
-  content: none;
+.toc-section-heading::before {
+  content: "▹ ";
 }
 
-.toc-section[open] > .toc-section-heading::after {
-  content: none;
+.toc-section[open] > .toc-section-heading::before {
+  content: "▿ ";
+}
+
+.toc-section-heading a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.toc-section-heading a:hover {
+  color: var(--toc-heading-hover);
 }
 
 .toc-poem {

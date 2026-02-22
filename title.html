@@ -31,22 +31,31 @@
 <a class="toc-entry" href="preface.html">Preface</a>
 <a class="toc-entry" href="notes.html">Notes</a>
 <details class="toc-section">
-<summary class="toc-section-heading">Materials</summary>
+<summary class="toc-section-heading"><a href="section-materials.html">Materials</a></summary>
 <a class="toc-entry" href="chapter-01.html">Getting Started</a>
 <a class="toc-entry" href="chapter-02.html">Getting Set Up</a>
 <a class="toc-entry" href="chapter-03.html">Infinite Regression</a>
 </details>
 <details class="toc-section">
-<summary class="toc-section-heading">Technique</summary>
+<summary class="toc-section-heading"><a href="section-technique.html">Technique</a></summary>
 <a class="toc-entry" href="chapter-10.html">The Show</a>
 </details>
 <details class="toc-section">
-<summary class="toc-section-heading">Ripple Effects</summary>
+<summary class="toc-section-heading"><a href="section-ripple.html">Ripple Effects</a></summary>
 <a class="toc-entry" href="poem-10.html">Blasphemy</a>
 </details>
 
   </nav>
   <script>
+    document.querySelectorAll('.toc-section-heading').forEach(function(summary) {
+      summary.addEventListener('click', function(e) {
+        var link = e.target.closest('a');
+        if (link) {
+          e.preventDefault();
+          window.location.href = link.href;
+        }
+      });
+    });
     document.addEventListener('keydown', function(e) {
       if (e.key === 'ArrowLeft')  { var a = document.querySelector('.nav-prev'); if (a) a.click(); }
       if (e.key === 'ArrowRight') { var a = document.querySelector('.nav-next'); if (a) a.click(); }
