@@ -15,4 +15,4 @@ AI Coding: ◊link["https://code.claude.com/docs/en/overview"]{Claude Code}
 
 Contact: therapy@marcusberley.com
 
-© 2026 Marcus Berley
+© 2026 Marcus Berley. This work is licensed under ◊link["https://creativecommons.org/licenses/by-nc-nd/4.0/"]{Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International. ◊cc-icons[]}

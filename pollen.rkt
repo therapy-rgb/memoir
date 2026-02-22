@@ -81,6 +81,15 @@
       (txexpr 'figure empty (list img))
       (txexpr 'figure empty (list img (txexpr 'figcaption empty caption-elements)))))
 
+;; Creative Commons license icons
+(define (cc-icons)
+  (txexpr 'span '((class "cc-icons"))
+    (list
+      (txexpr 'img '((src "images/cc.svg") (alt "Creative Commons") (class "cc-icon")) empty)
+      (txexpr 'img '((src "images/by.svg") (alt "Attribution") (class "cc-icon")) empty)
+      (txexpr 'img '((src "images/nc.svg") (alt "NonCommercial") (class "cc-icon")) empty)
+      (txexpr 'img '((src "images/nd.svg") (alt "NoDerivatives") (class "cc-icon")) empty))))
+
 ;; Poetry: preserve line breaks within a poem block
 (define (poem . elements)
   (define text (string-join

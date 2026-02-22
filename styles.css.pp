@@ -561,6 +561,20 @@ figcaption {
   border-radius: 2px;
 }
 
+◊; ——— CC license icons ———
+
+.cc-icons {
+  display: inline;
+  margin-left: 0.2em;
+}
+
+.cc-icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  margin-right: 0.1em;
+}
+
 ◊; ——— Links ———
 ◊; Inspired by Practical Typography: small caps + color shift, no underline
 
