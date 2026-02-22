@@ -21,10 +21,9 @@ Pollen treats the book as a program — content is written in `.pm` markup files
 
 ## Tech Stack
 
-- **Racket 9.0** — language runtime (installed at `/Applications/Racket v9.0/`)
+- **Racket 9.0** — language runtime
 - **Pollen** — book publishing system (Racket package)
-- **iA Writer** — primary editor for `.pm` content files (set as default app for `.pm` via `duti`)
-- **iCloud drafts:** `~/Library/Mobile Documents/27N4MQEA55~pro~writer/Documents/Methodology/` — Marcus drafts prose here before importing into `.pm` files
+- **iA Writer** — primary editor for `.pm` content files
 
 ## Commands
 
@@ -39,7 +38,7 @@ raco pollen setup             # Pre-compile and cache everything
 raco pollen version           # Show Pollen version
 ```
 
-All commands should be run from the project root (`/Users/marcusberley/Documents/Projects/memoir`).
+All commands should be run from the project root.
 
 ## Project Structure
 
@@ -233,15 +232,13 @@ In-content links (inside `<main>`) use a brick red color (`#a84632`) with no und
 
 ## Gotchas
 
-- Racket path is in `/etc/paths.d/racket` — includes a space (`/Applications/Racket v9.0/bin`)
 - `index.ptree` edits require a full server restart (see above)
 - `pollen.rkt` changes are picked up automatically (no restart needed)
 - The lozenge `◊` is typed with **Option + Shift + V** on Mac
 - Pollen's dev server renders on demand — first page load may be slow
 - Always render from the project directory (not with full absolute paths) — Pollen sets `here` based on the working directory
-- On this machine, `grep` is aliased to `rg` — use `command grep` in shell pipelines to get real grep behavior
 
 ## Repository
 
-- **GitHub**: https://github.com/therapy-rgb/memoir (private)
+- **GitHub**: https://github.com/therapy-rgb/memoir
 - **Branch strategy**: Direct commits to `main`

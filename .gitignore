@@ -14,6 +14,9 @@ pollen-cache/
 # direnv
 .envrc
 
+# Fonts (licensed — not for redistribution)
+fonts/
+
 # Editor
 *~
 \#*\#
