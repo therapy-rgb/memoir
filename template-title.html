@@ -27,44 +27,56 @@
     ◊(->html doc)
   </main>
   <nav class="toc">
-    ◊(let loop ([node here] [front ""] [prose-buf ""] [technique-buf ""] [ripple-buf ""] [poems-buf ""] [back ""])
+    ◊(let loop ([node here] [front ""] [prose-buf ""] [technique-buf ""] [ripple-buf ""] [poems-buf ""] [back ""]
+                [prose-page #f] [technique-page #f] [ripple-page #f])
       (define nxt (next node))
       (if nxt
         (let ([title (select-from-metas 'title nxt)]
               [section (or (select-from-metas 'section nxt) "")]
               [tmpl (or (select-from-metas 'template nxt) "")])
-          ;; Skip section divider pages — the TOC headings already label sections
+          ;; Capture section divider page URLs for linked headings
           (if (string=? tmpl "template-section.html")
-            (loop nxt front prose-buf technique-buf ripple-buf poems-buf back)
+            (cond
+              [(string=? title "Materials")
+               (loop nxt front prose-buf technique-buf ripple-buf poems-buf back (format "~a" nxt) technique-page ripple-page)]
+              [(string=? title "Technique")
+               (loop nxt front prose-buf technique-buf ripple-buf poems-buf back prose-page (format "~a" nxt) ripple-page)]
+              [(string=? title "Ripple Effects")
+               (loop nxt front prose-buf technique-buf ripple-buf poems-buf back prose-page technique-page (format "~a" nxt))]
+              [else
+               (loop nxt front prose-buf technique-buf ripple-buf poems-buf back prose-page technique-page ripple-page)])
           (let ()
           (define entry (format "<a class=\"toc-entry~a\" href=\"~a\">~a</a>\n"
                           (if (string=? section "poems") " toc-poem" "") nxt title))
           (cond
             [(string=? section "prose")
-             (loop nxt front (string-append prose-buf entry) technique-buf ripple-buf poems-buf back)]
+             (loop nxt front (string-append prose-buf entry) technique-buf ripple-buf poems-buf back prose-page technique-page ripple-page)]
             [(string=? section "technique")
-             (loop nxt front prose-buf (string-append technique-buf entry) ripple-buf poems-buf back)]
+             (loop nxt front prose-buf (string-append technique-buf entry) ripple-buf poems-buf back prose-page technique-page ripple-page)]
             [(string=? section "ripple")
-             (loop nxt front prose-buf technique-buf (string-append ripple-buf entry) poems-buf back)]
+             (loop nxt front prose-buf technique-buf (string-append ripple-buf entry) poems-buf back prose-page technique-page ripple-page)]
             [(string=? section "poems")
-             (loop nxt front prose-buf technique-buf ripple-buf (string-append poems-buf entry) back)]
+             (loop nxt front prose-buf technique-buf ripple-buf (string-append poems-buf entry) back prose-page technique-page ripple-page)]
             ;; Before prose starts, it's a front-matter entry
             [(string=? prose-buf "")
-             (loop nxt (string-append front entry) prose-buf technique-buf ripple-buf poems-buf back)]
+             (loop nxt (string-append front entry) prose-buf technique-buf ripple-buf poems-buf back prose-page technique-page ripple-page)]
             ;; After all sections, it's back-matter
             [else
-             (loop nxt front prose-buf technique-buf ripple-buf poems-buf (string-append back entry))]))))
+             (loop nxt front prose-buf technique-buf ripple-buf poems-buf (string-append back entry) prose-page technique-page ripple-page)]))))
         ;; Assemble: front, Materials, Technique, Ripple Effects, Poems, back
         (string-append
           front
           (if (> (string-length prose-buf) 0)
-            (format "<details class=\"toc-section\">\n<summary class=\"toc-section-heading\">Materials</summary>\n~a</details>\n" prose-buf)
+            (format "<details class=\"toc-section\">\n<summary class=\"toc-section-heading\"><a href=\"~a\">Materials</a></summary>\n~a</details>\n"
+                    (or prose-page "#") prose-buf)
             "")
           (if (> (string-length technique-buf) 0)
-            (format "<details class=\"toc-section\">\n<summary class=\"toc-section-heading\">Technique</summary>\n~a</details>\n" technique-buf)
+            (format "<details class=\"toc-section\">\n<summary class=\"toc-section-heading\"><a href=\"~a\">Technique</a></summary>\n~a</details>\n"
+                    (or technique-page "#") technique-buf)
             "")
           (if (> (string-length ripple-buf) 0)
-            (format "<details class=\"toc-section\">\n<summary class=\"toc-section-heading\">Ripple Effects</summary>\n~a</details>\n" ripple-buf)
+            (format "<details class=\"toc-section\">\n<summary class=\"toc-section-heading\"><a href=\"~a\">Ripple Effects</a></summary>\n~a</details>\n"
+                    (or ripple-page "#") ripple-buf)
             "")
           (if (> (string-length poems-buf) 0)
             (format "<details class=\"toc-section\">\n<summary class=\"toc-section-heading\">Poems</summary>\n~a</details>\n" poems-buf)
@@ -72,6 +84,15 @@
           back)))
   </nav>
   <script>
+    document.querySelectorAll('.toc-section-heading').forEach(function(summary) {
+      summary.addEventListener('click', function(e) {
+        var link = e.target.closest('a');
+        if (link) {
+          e.preventDefault();
+          window.location.href = link.href;
+        }
+      });
+    });
     document.addEventListener('keydown', function(e) {
       if (e.key === 'ArrowLeft')  { var a = document.querySelector('.nav-prev'); if (a) a.click(); }
       if (e.key === 'ArrowRight') { var a = document.querySelector('.nav-next'); if (a) a.click(); }
