@@ -268,10 +268,8 @@ header {
   margin-bottom: 0.8rem;
   list-style: none;
   width: fit-content;
-}
-
-.toc-section-heading:hover {
-  color: var(--toc-heading-hover);
+  padding-left: 2em;
+  position: relative;
 }
 
 .toc-section-heading::-webkit-details-marker {
@@ -279,11 +277,22 @@ header {
 }
 
 .toc-section-heading::before {
-  content: "▹ ";
+  content: "▹";
+  position: absolute;
+  left: 0;
+  width: 1.2em;
+  text-align: center;
+  border-radius: 3px;
+  background-color: rgba(128, 128, 128, 0.1);
+  transition: background-color 0.15s;
 }
 
 .toc-section[open] > .toc-section-heading::before {
-  content: "▿ ";
+  content: "▿";
+}
+
+.toc-section-heading:hover:not(:has(a:hover))::before {
+  background-color: rgba(128, 128, 128, 0.25);
 }
 
 .toc-section-heading a {
@@ -293,6 +302,7 @@ header {
 
 .toc-section-heading a:hover {
   color: var(--toc-heading-hover);
+  text-decoration: underline;
 }
 
 .toc-poem {
