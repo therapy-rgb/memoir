@@ -2,3 +2,5 @@
 
 ◊(define-meta title "Technique")
 ◊(define-meta template "template-section.html")
+
+◊figure["images/technique.webp"]

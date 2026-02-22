@@ -516,6 +516,12 @@ figure img {
   max-width: 65%;
 }
 
+[data-page="chapter-01.html"] .chapter-title + figure img,
+[data-page="chapter-02.html"] .chapter-title + figure img,
+[data-page="chapter-03.html"] .chapter-title + figure img {
+  max-width: 75%;
+}
+
 figcaption {
   font-size: 0.85em;
   color: var(--accent-color);

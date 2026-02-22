@@ -5,3 +5,5 @@
 
 ◊chapter-title{Infinite Regression}
 
+◊figure["images/infinite-regression.webp"]{}
+

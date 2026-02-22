@@ -5,6 +5,8 @@
 
 ◊chapter-title{Getting Set Up}
 
+◊figure["images/getting-set-up-canvas.webp"]{}
+
 While it's important to establish a starting point, the specific starting point is a bit arbitrary. We're always in the middle of things, so there is always time before the starting point. To take my cafe example, I didn't begin at the cafe, I was at home, drove here, etc. And even when I arrived, there were some technical elements of this project that I worked on before I began to write fresh material.
 
 The specific technical work I did was relevant to how Pollen functions, as you have to put a ◊"◊" symbol before indicating a type, for example, a link to a website is indicated by ◊"◊link[]{}". So I figured out how to create a keyboard shortcut for the diamond symbol by typing the letters "los". I also tinkered with how the links would be displayed. This was all part of ◊emphasis{getting set up}, which I'm using here as a technical term. This is when you get things prepared for something that you plan to do. 
