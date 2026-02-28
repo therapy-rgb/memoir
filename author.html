@@ -15,6 +15,10 @@
         document.documentElement.setAttribute('data-theme', t);
         document.querySelector('meta[name="color-scheme"]').setAttribute('content', t);
       }
+      var tint = localStorage.getItem('tint');
+      if (tint === 'sepia' || tint === 'green' || tint === 'pink') {
+        document.documentElement.setAttribute('data-tint', tint);
+      }
     })();
   </script>
   <link rel="stylesheet" href="styles.css">
@@ -22,7 +26,18 @@
 <body data-page="author.html">
   <header>
     <a class="home-link" href="title.html">Methodology</a>
-    <button class="theme-toggle" aria-label="Toggle theme"></button>
+    <div class="header-controls">
+      <div class="tint-picker" aria-label="Background color">
+        <div class="tint-dot tint-trigger" data-tint-value="none" title="Choose background color"></div>
+        <div class="tint-options">
+          <div class="tint-dot" data-tint-value="none" title="Default"></div>
+          <div class="tint-dot" data-tint-value="sepia" title="Sepia"></div>
+          <div class="tint-dot" data-tint-value="green" title="Green"></div>
+          <div class="tint-dot" data-tint-value="pink" title="Pink"></div>
+        </div>
+      </div>
+      <button class="theme-toggle" aria-label="Toggle theme"></button>
+    </div>
   </header>
   <main>
     <root><h1 class="chapter-title">Author</h1><figure><img src="images/berley-square-bw.webp" loading="lazy" alt=""/></figure><p>Methodology was written by Marcus Berley. Other publication experiments by the author include <a href="https://www.amazon.com/M-Book-Poems-Marcus-Berley/dp/1931002983/ref=sr_1_1?crid=2BJL5W708RWH5&amp;dib=eyJ2IjoiMSJ9.lo833MC4wRgYPbqjfWGYpsvREh9PctfCLrsXJKroTeQ.IL21QuGC4a_WliQOvdd7gMro_AlGMuGjzcmEdbOUm6I&amp;dib_tag=se&amp;keywords=marcus+berley&amp;qid=1771015666&amp;sprefix=marcus+berley%2Caps%2C137&amp;sr=8-1" target="_blank" rel="noopener">M</a>, The Giraffe, <a href="https://artistmomolive.bandcamp.com/album/momo" target="_blank" rel="noopener">MoMo</a>, Therapy 101, The Intern Dispatch, and <a href="https://suburbandadmode.com" target="_blank" rel="noopener">Suburban Dad Mode</a>. His professional website is <a href="https://marcusberley.com" target="_blank" rel="noopener">Marcus Berley Psychotherapy, LLC</a>.</p><p>A handful of poems can be found published by <a href="https://inparentheses.art/2019/07/31/works-by-marcus-berley/" target="_blank" rel="noopener">in parentheses</a>. Additional unpublished letters, poems and notebooks can be requested from the archives, currently located in Romariz, Portugal. Works not to be confused with those of <a href="https://marcberley.com" target="_blank" rel="noopener">Marc Berley</a>.</p></root>
@@ -86,6 +101,50 @@
         apply(next(getStored()));
       });
       update();
+    })();
+    (function() {
+      var picker = document.querySelector('.tint-picker');
+      if (!picker) return;
+      var trigger = picker.querySelector('.tint-trigger');
+      var options = picker.querySelectorAll('.tint-options .tint-dot');
+      var currentTint = localStorage.getItem('tint') || 'none';
+
+      function updateTrigger() {
+        trigger.setAttribute('data-tint-value', currentTint);
+        trigger.classList.add('active');
+        options.forEach(function(dot) {
+          dot.classList.toggle('active', dot.getAttribute('data-tint-value') === currentTint);
+        });
+      }
+
+      function applyTint(value) {
+        currentTint = value;
+        if (value === 'none') {
+          localStorage.removeItem('tint');
+          document.documentElement.removeAttribute('data-tint');
+        } else {
+          localStorage.setItem('tint', value);
+          document.documentElement.setAttribute('data-tint', value);
+        }
+        updateTrigger();
+      }
+
+      trigger.addEventListener('click', function() {
+        picker.classList.toggle('open');
+      });
+
+      options.forEach(function(dot) {
+        dot.addEventListener('click', function() {
+          applyTint(dot.getAttribute('data-tint-value'));
+          picker.classList.remove('open');
+        });
+      });
+
+      document.addEventListener('click', function(e) {
+        if (!picker.contains(e.target)) picker.classList.remove('open');
+      });
+
+      updateTrigger();
     })();
   </script>
 </body>

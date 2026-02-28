@@ -15,6 +15,10 @@
         document.documentElement.setAttribute('data-theme', t);
         document.querySelector('meta[name="color-scheme"]').setAttribute('content', t);
       }
+      var tint = localStorage.getItem('tint');
+      if (tint === 'sepia' || tint === 'green' || tint === 'pink') {
+        document.documentElement.setAttribute('data-tint', tint);
+      }
     })();
   </script>
   <link rel="stylesheet" href="styles.css">
@@ -22,7 +26,18 @@
 <body data-page="chapter-02.html">
   <header>
     <a class="home-link" href="title.html">Methodology</a>
-    <button class="theme-toggle" aria-label="Toggle theme"></button>
+    <div class="header-controls">
+      <div class="tint-picker" aria-label="Background color">
+        <div class="tint-dot tint-trigger" data-tint-value="none" title="Choose background color"></div>
+        <div class="tint-options">
+          <div class="tint-dot" data-tint-value="none" title="Default"></div>
+          <div class="tint-dot" data-tint-value="sepia" title="Sepia"></div>
+          <div class="tint-dot" data-tint-value="green" title="Green"></div>
+          <div class="tint-dot" data-tint-value="pink" title="Pink"></div>
+        </div>
+      </div>
+      <button class="theme-toggle" aria-label="Toggle theme"></button>
+    </div>
   </header>
   <main>
     <root><h1 class="chapter-title">Getting Set Up</h1><figure><img src="images/getting-set-up-canvas.webp" loading="lazy" alt=""/></figure><p>While it’s important to establish a starting point, the specific starting point is a bit arbitrary. We’re always in the middle of things, so there is always time before the starting point. To take my cafe example, I didn’t begin at the cafe, I was at home, drove here, etc. And even when I arrived, there were some technical elements of this project that I worked on before I began to write fresh material.</p><p>The specific technical work I did was relevant to how Pollen functions, as you have to put a ◊ symbol before indicating a type, for example, a link to a website is indicated by ◊link[]{}. So I figured out how to create a keyboard shortcut for the diamond symbol by typing the letters “los”. I also tinkered with how the links would be displayed. This was all part of <em>getting set up</em>, which I’m using here as a technical term. This is when you get things prepared for something that you plan to do.</p><p>In my work as a <a href="https://marcusberley.com" target="_blank" rel="noopener">psychotherapist</a>, I see all of my clients via telehealth, so getting set up for an appointment includes launching the <a href="https://www.google.com/chrome/dr/download/?brand=OZZY&amp;ds_kid=10490390262&amp;gclsrc=aw.ds&amp;gad_source=1&amp;gad_campaignid=21457145903&amp;gclid=CjwKCAiAwNDMBhBfEiwAd7ti1Jy-aAw1HWiUgxDm9pwlhTX6sidiJ-_BvGdDUm-e2sawv5ughTdJLBoCAgEQAvD_BwE" target="_blank" rel="noopener">Chrome</a> web browser, logging into <a href="https://bitwarden.com" target="_blank" rel="noopener">Bitwarden</a> to then log into <a href="https://www.simplepractice.com" target="_blank" rel="noopener">SimplePractice</a>, opening <a href="https://bear.app" target="_blank" rel="noopener">Bear</a> (where I write my initial draft of client progress notes) and getting these applications arranged on my screen in a pre-set configuration, using <a href="https://manytricks.com/moom/" target="_blank" rel="noopener">Moom</a>. This way, when my client appears on the screen, everything is set up predictably, so that I can easily direct my full attention towards my client. The environment is made ready for the experience.</p></root>
@@ -86,6 +101,50 @@
         apply(next(getStored()));
       });
       update();
+    })();
+    (function() {
+      var picker = document.querySelector('.tint-picker');
+      if (!picker) return;
+      var trigger = picker.querySelector('.tint-trigger');
+      var options = picker.querySelectorAll('.tint-options .tint-dot');
+      var currentTint = localStorage.getItem('tint') || 'none';
+
+      function updateTrigger() {
+        trigger.setAttribute('data-tint-value', currentTint);
+        trigger.classList.add('active');
+        options.forEach(function(dot) {
+          dot.classList.toggle('active', dot.getAttribute('data-tint-value') === currentTint);
+        });
+      }
+
+      function applyTint(value) {
+        currentTint = value;
+        if (value === 'none') {
+          localStorage.removeItem('tint');
+          document.documentElement.removeAttribute('data-tint');
+        } else {
+          localStorage.setItem('tint', value);
+          document.documentElement.setAttribute('data-tint', value);
+        }
+        updateTrigger();
+      }
+
+      trigger.addEventListener('click', function() {
+        picker.classList.toggle('open');
+      });
+
+      options.forEach(function(dot) {
+        dot.addEventListener('click', function() {
+          applyTint(dot.getAttribute('data-tint-value'));
+          picker.classList.remove('open');
+        });
+      });
+
+      document.addEventListener('click', function(e) {
+        if (!picker.contains(e.target)) picker.classList.remove('open');
+      });
+
+      updateTrigger();
     })();
   </script>
 </body>
