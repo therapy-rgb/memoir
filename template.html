@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'">
+  <title>◊(select-from-metas 'title here)</title>
+  <meta name="description" content="Methodology — a memoir by Marcus Berley. Journal entries from the first year of his daughter's life, plus poems written in stolen moments.">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') {
+        document.documentElement.setAttribute('data-theme', t);
+        document.querySelector('meta[name="color-scheme"]').setAttribute('content', t);
+      }
+      var tint = localStorage.getItem('tint');
+      if (tint === 'sepia' || tint === 'green' || tint === 'pink') {
+        document.documentElement.setAttribute('data-tint', tint);
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="◊|here|">
+  <header>
+    <a class="home-link" href="title.html">Methodology</a>
+    <div class="header-controls">
+      <div class="tint-picker" aria-label="Background color">
+        <div class="tint-dot tint-trigger" data-tint-value="none" title="Choose background color"></div>
+        <div class="tint-options">
+          <div class="tint-dot" data-tint-value="none" title="Default"></div>
+          <div class="tint-dot" data-tint-value="sepia" title="Sepia"></div>
+          <div class="tint-dot" data-tint-value="green" title="Green"></div>
+          <div class="tint-dot" data-tint-value="pink" title="Pink"></div>
+        </div>
+      </div>
+      <button class="theme-toggle" aria-label="Toggle theme"></button>
+    </div>
+  </header>
+  <main>
+    ◊(->html doc)
+  </main>
+  <nav>
+    ◊when/splice[(previous here)]{
+    <a class="nav-prev" href="◊(previous here)">&larr; ◊(select-from-metas 'title (previous here))</a>
+    }
+    ◊when/splice[(next here)]{
+    <a class="nav-next" href="◊(next here)">◊(select-from-metas 'title (next here)) &rarr;</a>
+    }
+  </nav>
+  <script>
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowLeft')  { var a = document.querySelector('.nav-prev'); if (a) a.click(); }
+      if (e.key === 'ArrowRight') { var a = document.querySelector('.nav-next'); if (a) a.click(); }
+    });
+    (function() {
+      function getSysPref() {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      function getStored() {
+        var s = localStorage.getItem('theme');
+        return (s === 'light' || s === 'dark') ? s : 'system';
+      }
+      function next(stored) {
+        var sys = getSysPref();
+        if (stored === 'system') return sys === 'light' ? 'dark' : 'light';
+        if (stored === sys) return 'system';
+        return sys;
+      }
+      function apply(stored) {
+        if (stored === 'light' || stored === 'dark') {
+          localStorage.setItem('theme', stored);
+          document.documentElement.setAttribute('data-theme', stored);
+          document.querySelector('meta[name="color-scheme"]').setAttribute('content', stored);
+        } else {
+          localStorage.removeItem('theme');
+          document.documentElement.removeAttribute('data-theme');
+          document.querySelector('meta[name="color-scheme"]').setAttribute('content', 'light dark');
+        }
+        update();
+      }
+      function update() {
+        var btn = document.querySelector('.theme-toggle');
+        if (!btn) return;
+        var stored = getStored();
+        var icon, label;
+        if (stored === 'system') {
+          icon = '<svg aria-hidden="true" width="14" height="11" viewBox="0 0 14 11" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px"><rect x="0.6" y="0.6" width="12.8" height="7.4" rx="1.2"/><path d="M5.5 8l-.5 2h4l-.5-2"/><line x1="3" y1="10" x2="11" y2="10"/></svg>';
+          label = 'System';
+        } else if (stored === 'dark') {
+          icon = '\u263E\uFE0E';
+          label = 'Dark';
+        } else {
+          icon = '\u2600\uFE0E';
+          label = 'Light';
+        }
+        btn.innerHTML = '<span class="theme-toggle-icon">' + icon + '</span>' + label;
+        btn.setAttribute('title', label + ' mode');
+        btn.setAttribute('aria-label', label + ' mode');
+      }
+      var btn = document.querySelector('.theme-toggle');
+      if (btn) btn.addEventListener('click', function() {
+        apply(next(getStored()));
+      });
+      update();
+    })();
+    (function() {
+      var picker = document.querySelector('.tint-picker');
+      if (!picker) return;
+      var trigger = picker.querySelector('.tint-trigger');
+      var options = picker.querySelectorAll('.tint-options .tint-dot');
+      var currentTint = localStorage.getItem('tint') || 'none';
+
+      function updateTrigger() {
+        trigger.setAttribute('data-tint-value', currentTint);
+        trigger.classList.add('active');
+        options.forEach(function(dot) {
+          dot.classList.toggle('active', dot.getAttribute('data-tint-value') === currentTint);
+        });
+      }
+
+      function applyTint(value) {
+        currentTint = value;
+        if (value === 'none') {
+          localStorage.removeItem('tint');
+          document.documentElement.removeAttribute('data-tint');
+        } else {
+          localStorage.setItem('tint', value);
+          document.documentElement.setAttribute('data-tint', value);
+        }
+        updateTrigger();
+      }
+
+      trigger.addEventListener('click', function() {
+        picker.classList.toggle('open');
+      });
+
+      options.forEach(function(dot) {
+        dot.addEventListener('click', function() {
+          applyTint(dot.getAttribute('data-tint-value'));
+          picker.classList.remove('open');
+        });
+      });
+
+      document.addEventListener('click', function(e) {
+        if (!picker.contains(e.target)) picker.classList.remove('open');
+      });
+
+      updateTrigger();
+    })();
+  </script>
+</body>
+</html>
