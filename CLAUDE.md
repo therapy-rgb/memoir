@@ -171,6 +171,24 @@ CSS uses two selectors for dark mode:
 - `@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) }` — system preference, unless user forced light
 - `:root[data-theme="dark"]` — explicit dark override from the toggle
 
+## Background Color Tints
+
+A Kindle-style tint picker sits next to the theme toggle in a `.header-controls` wrapper. It offers four background color options:
+- **Default** — standard white/dark background
+- **Sepia** — warm, aged-paper tone
+- **Green** — gentle sage hint
+- **Pink** — faint blush
+
+Each tint works in both light and dark mode. The tint and theme are independent axes:
+- **Theme** (`data-theme` on `<html>`) — controls brightness (system/light/dark), stored in `localStorage('theme')`
+- **Tint** (`data-tint` on `<html>`) — controls color temperature (none/sepia/green/pink), stored in `localStorage('tint')`
+
+**UI:** A single colored dot (`.tint-trigger`) shows the current tint. Click to expand (`.tint-picker.open`) and reveal all four options. Click a dot to select; click outside to close.
+
+**CSS architecture:** Each tint defines Pollen variables for both light and dark variants (e.g., `sepia-light-bg`, `sepia-dark-bg`). These feed into CSS rules that override all color tokens (`--bg-color`, `--text-color`, `--accent-color`, `--link-color`, `--link-hover-bg`, `--border-color`, `--toc-border-color`, `--toc-hover-color`, `--toc-heading-hover`, `--home-hover-color`, `--home-hover-bg`, `--nav-hover-bg`). Three rule blocks per tint: light default, system-dark media query, and explicit `data-theme="dark"`.
+
+**Swatch dot colors:** The dots preview their actual background color, adjusting for light/dark mode so they remain distinguishable.
+
 ## Fonts
 
 - **Cooper Light** — body text, weight 300 (`fonts/cooper_light.woff2`)

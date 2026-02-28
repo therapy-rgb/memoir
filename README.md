@@ -65,7 +65,9 @@ Three-state toggle in the header:
 | Light | ☀ | Forces light mode |
 | Dark | ☾ | Forces dark mode |
 
-Choice persists in localStorage. An inline script applies the saved theme before CSS loads to prevent flash.
+A background color tint picker sits next to the theme toggle, offering four options: default, sepia, green, and pink. Tints work in both light and dark mode -- the two settings are independent.
+
+Both choices persist in localStorage. An inline script applies saved settings before CSS loads to prevent flash.
 
 ## Local Development
 
