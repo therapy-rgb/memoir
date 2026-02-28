@@ -15,6 +15,10 @@
         document.documentElement.setAttribute('data-theme', t);
         document.querySelector('meta[name="color-scheme"]').setAttribute('content', t);
       }
+      var tint = localStorage.getItem('tint');
+      if (tint === 'sepia' || tint === 'green' || tint === 'pink') {
+        document.documentElement.setAttribute('data-tint', tint);
+      }
     })();
   </script>
   <link rel="stylesheet" href="styles.css">
@@ -22,7 +26,18 @@
 <body class="section-page">
   <header>
     <a class="home-link" href="title.html">Methodology</a>
-    <button class="theme-toggle" aria-label="Toggle theme"></button>
+    <div class="header-controls">
+      <div class="tint-picker" aria-label="Background color">
+        <div class="tint-dot tint-trigger" data-tint-value="none" title="Choose background color"></div>
+        <div class="tint-options">
+          <div class="tint-dot" data-tint-value="none" title="Default"></div>
+          <div class="tint-dot" data-tint-value="sepia" title="Sepia"></div>
+          <div class="tint-dot" data-tint-value="green" title="Green"></div>
+          <div class="tint-dot" data-tint-value="pink" title="Pink"></div>
+        </div>
+      </div>
+      <button class="theme-toggle" aria-label="Toggle theme"></button>
+    </div>
   </header>
   <main>
     <h1 class="section-title">◊(select-from-metas 'title here)</h1>
@@ -91,6 +106,50 @@
         apply(next(getStored()));
       });
       update();
+    })();
+    (function() {
+      var picker = document.querySelector('.tint-picker');
+      if (!picker) return;
+      var trigger = picker.querySelector('.tint-trigger');
+      var options = picker.querySelectorAll('.tint-options .tint-dot');
+      var currentTint = localStorage.getItem('tint') || 'none';
+
+      function updateTrigger() {
+        trigger.setAttribute('data-tint-value', currentTint);
+        trigger.classList.add('active');
+        options.forEach(function(dot) {
+          dot.classList.toggle('active', dot.getAttribute('data-tint-value') === currentTint);
+        });
+      }
+
+      function applyTint(value) {
+        currentTint = value;
+        if (value === 'none') {
+          localStorage.removeItem('tint');
+          document.documentElement.removeAttribute('data-tint');
+        } else {
+          localStorage.setItem('tint', value);
+          document.documentElement.setAttribute('data-tint', value);
+        }
+        updateTrigger();
+      }
+
+      trigger.addEventListener('click', function() {
+        picker.classList.toggle('open');
+      });
+
+      options.forEach(function(dot) {
+        dot.addEventListener('click', function() {
+          applyTint(dot.getAttribute('data-tint-value'));
+          picker.classList.remove('open');
+        });
+      });
+
+      document.addEventListener('click', function(e) {
+        if (!picker.contains(e.target)) picker.classList.remove('open');
+      });
+
+      updateTrigger();
     })();
   </script>
 </body>

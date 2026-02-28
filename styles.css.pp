@@ -91,6 +91,226 @@
   --nav-hover-bg: ◊|dark-nav-hover-bg|;
 }
 
+◊; ——— Tint overrides ———
+◊; Background color tints (sepia, green, pink) — work in both light and dark mode.
+◊; Each tint overrides --bg-color, --text-color, and accent colors for readability.
+
+◊; --- Sepia ---
+◊(define sepia-light-bg "#f7f1e6")
+◊(define sepia-light-text "#2e2a24")
+◊(define sepia-light-accent "#6b6256")
+◊(define sepia-light-link "#a84632")
+◊(define sepia-light-link-hover-bg "#efe6d4")
+◊(define sepia-light-border "#ddd6c8")
+◊(define sepia-light-nav-hover-bg "#f0e8d8")
+
+◊(define sepia-light-toc-hover "#c47a50")
+◊(define sepia-light-toc-heading-hover "#a07820")
+◊(define sepia-light-home-hover-color "#f7f1e6")
+◊(define sepia-light-home-hover-bg "#2e2a24")
+
+◊(define sepia-dark-bg "#221f1a")
+◊(define sepia-dark-text "#d0caba")
+◊(define sepia-dark-accent "#998e7e")
+◊(define sepia-dark-link "#e0907a")
+◊(define sepia-dark-link-hover-bg "#302a20")
+◊(define sepia-dark-border "#332d24")
+◊(define sepia-dark-nav-hover-bg "#2a2520")
+◊(define sepia-dark-toc-hover "#d4a070")
+◊(define sepia-dark-toc-heading-hover "#c4a050")
+◊(define sepia-dark-home-hover-color "#221f1a")
+◊(define sepia-dark-home-hover-bg "#d0caba")
+
+◊; --- Green ---
+◊(define green-light-bg "#eef4ee")
+◊(define green-light-text "#1e2b1e")
+◊(define green-light-accent "#546854")
+◊(define green-light-link "#a84632")
+◊(define green-light-link-hover-bg "#dde8dd")
+◊(define green-light-border "#ccdacc")
+◊(define green-light-nav-hover-bg "#e2ece2")
+
+◊(define green-light-toc-hover "#8a7a4e")
+◊(define green-light-toc-heading-hover "#6a7a30")
+◊(define green-light-home-hover-color "#eef4ee")
+◊(define green-light-home-hover-bg "#1e2b1e")
+
+◊(define green-dark-bg "#1a211c")
+◊(define green-dark-text "#c0d0c0")
+◊(define green-dark-accent "#6a8a6a")
+◊(define green-dark-link "#e0907a")
+◊(define green-dark-link-hover-bg "#222e24")
+◊(define green-dark-border "#283028")
+◊(define green-dark-nav-hover-bg "#202a22")
+◊(define green-dark-toc-hover "#b0a060")
+◊(define green-dark-toc-heading-hover "#a0b050")
+◊(define green-dark-home-hover-color "#1a211c")
+◊(define green-dark-home-hover-bg "#c0d0c0")
+
+◊; --- Pink ---
+◊(define pink-light-bg "#f6edef")
+◊(define pink-light-text "#2a1e22")
+◊(define pink-light-accent "#7a6068")
+◊(define pink-light-link "#a84632")
+◊(define pink-light-link-hover-bg "#ebdce0")
+◊(define pink-light-border "#dcccd0")
+◊(define pink-light-nav-hover-bg "#f0e2e6")
+
+◊(define pink-light-toc-hover "#c47a60")
+◊(define pink-light-toc-heading-hover "#a07840")
+◊(define pink-light-home-hover-color "#f6edef")
+◊(define pink-light-home-hover-bg "#2a1e22")
+
+◊(define pink-dark-bg "#211a1e")
+◊(define pink-dark-text "#d0c0c6")
+◊(define pink-dark-accent "#907078")
+◊(define pink-dark-link "#e0907a")
+◊(define pink-dark-link-hover-bg "#2e2028")
+◊(define pink-dark-border "#302428")
+◊(define pink-dark-nav-hover-bg "#281e24")
+◊(define pink-dark-toc-hover "#d4a080")
+◊(define pink-dark-toc-heading-hover "#c4a050")
+◊(define pink-dark-home-hover-color "#211a1e")
+◊(define pink-dark-home-hover-bg "#d0c0c6")
+
+◊; Light mode tint overrides (default light, or explicit light)
+:root[data-tint="sepia"] {
+  --bg-color: ◊|sepia-light-bg|;
+  --text-color: ◊|sepia-light-text|;
+  --accent-color: ◊|sepia-light-accent|;
+  --link-color: ◊|sepia-light-link|;
+  --link-hover-bg: ◊|sepia-light-link-hover-bg|;
+  --border-color: ◊|sepia-light-border|;
+  --toc-border-color: ◊|sepia-light-border|;
+  --toc-hover-color: ◊|sepia-light-toc-hover|;
+  --toc-heading-hover: ◊|sepia-light-toc-heading-hover|;
+  --home-hover-color: ◊|sepia-light-home-hover-color|;
+  --home-hover-bg: ◊|sepia-light-home-hover-bg|;
+  --nav-hover-bg: ◊|sepia-light-nav-hover-bg|;
+}
+
+:root[data-tint="green"] {
+  --bg-color: ◊|green-light-bg|;
+  --text-color: ◊|green-light-text|;
+  --accent-color: ◊|green-light-accent|;
+  --link-color: ◊|green-light-link|;
+  --link-hover-bg: ◊|green-light-link-hover-bg|;
+  --border-color: ◊|green-light-border|;
+  --toc-border-color: ◊|green-light-border|;
+  --toc-hover-color: ◊|green-light-toc-hover|;
+  --toc-heading-hover: ◊|green-light-toc-heading-hover|;
+  --home-hover-color: ◊|green-light-home-hover-color|;
+  --home-hover-bg: ◊|green-light-home-hover-bg|;
+  --nav-hover-bg: ◊|green-light-nav-hover-bg|;
+}
+
+:root[data-tint="pink"] {
+  --bg-color: ◊|pink-light-bg|;
+  --text-color: ◊|pink-light-text|;
+  --accent-color: ◊|pink-light-accent|;
+  --link-color: ◊|pink-light-link|;
+  --link-hover-bg: ◊|pink-light-link-hover-bg|;
+  --border-color: ◊|pink-light-border|;
+  --toc-border-color: ◊|pink-light-border|;
+  --toc-hover-color: ◊|pink-light-toc-hover|;
+  --toc-heading-hover: ◊|pink-light-toc-heading-hover|;
+  --home-hover-color: ◊|pink-light-home-hover-color|;
+  --home-hover-bg: ◊|pink-light-home-hover-bg|;
+  --nav-hover-bg: ◊|pink-light-nav-hover-bg|;
+}
+
+◊; Dark mode + tint (system preference)
+@media (prefers-color-scheme: dark) {
+  :root[data-tint="sepia"]:not([data-theme="light"]) {
+    --bg-color: ◊|sepia-dark-bg|;
+    --text-color: ◊|sepia-dark-text|;
+    --accent-color: ◊|sepia-dark-accent|;
+    --link-color: ◊|sepia-dark-link|;
+    --link-hover-bg: ◊|sepia-dark-link-hover-bg|;
+    --border-color: ◊|sepia-dark-border|;
+    --toc-border-color: ◊|sepia-dark-border|;
+    --toc-hover-color: ◊|sepia-dark-toc-hover|;
+    --toc-heading-hover: ◊|sepia-dark-toc-heading-hover|;
+    --home-hover-color: ◊|sepia-dark-home-hover-color|;
+    --home-hover-bg: ◊|sepia-dark-home-hover-bg|;
+    --nav-hover-bg: ◊|sepia-dark-nav-hover-bg|;
+  }
+  :root[data-tint="green"]:not([data-theme="light"]) {
+    --bg-color: ◊|green-dark-bg|;
+    --text-color: ◊|green-dark-text|;
+    --accent-color: ◊|green-dark-accent|;
+    --link-color: ◊|green-dark-link|;
+    --link-hover-bg: ◊|green-dark-link-hover-bg|;
+    --border-color: ◊|green-dark-border|;
+    --toc-border-color: ◊|green-dark-border|;
+    --toc-hover-color: ◊|green-dark-toc-hover|;
+    --toc-heading-hover: ◊|green-dark-toc-heading-hover|;
+    --home-hover-color: ◊|green-dark-home-hover-color|;
+    --home-hover-bg: ◊|green-dark-home-hover-bg|;
+    --nav-hover-bg: ◊|green-dark-nav-hover-bg|;
+  }
+  :root[data-tint="pink"]:not([data-theme="light"]) {
+    --bg-color: ◊|pink-dark-bg|;
+    --text-color: ◊|pink-dark-text|;
+    --accent-color: ◊|pink-dark-accent|;
+    --link-color: ◊|pink-dark-link|;
+    --link-hover-bg: ◊|pink-dark-link-hover-bg|;
+    --border-color: ◊|pink-dark-border|;
+    --toc-border-color: ◊|pink-dark-border|;
+    --toc-hover-color: ◊|pink-dark-toc-hover|;
+    --toc-heading-hover: ◊|pink-dark-toc-heading-hover|;
+    --home-hover-color: ◊|pink-dark-home-hover-color|;
+    --home-hover-bg: ◊|pink-dark-home-hover-bg|;
+    --nav-hover-bg: ◊|pink-dark-nav-hover-bg|;
+  }
+}
+
+◊; Dark mode + tint (explicit toggle)
+:root[data-theme="dark"][data-tint="sepia"] {
+  --bg-color: ◊|sepia-dark-bg|;
+  --text-color: ◊|sepia-dark-text|;
+  --accent-color: ◊|sepia-dark-accent|;
+  --link-color: ◊|sepia-dark-link|;
+  --link-hover-bg: ◊|sepia-dark-link-hover-bg|;
+  --border-color: ◊|sepia-dark-border|;
+  --toc-border-color: ◊|sepia-dark-border|;
+  --toc-hover-color: ◊|sepia-dark-toc-hover|;
+  --toc-heading-hover: ◊|sepia-dark-toc-heading-hover|;
+  --home-hover-color: ◊|sepia-dark-home-hover-color|;
+  --home-hover-bg: ◊|sepia-dark-home-hover-bg|;
+  --nav-hover-bg: ◊|sepia-dark-nav-hover-bg|;
+}
+
+:root[data-theme="dark"][data-tint="green"] {
+  --bg-color: ◊|green-dark-bg|;
+  --text-color: ◊|green-dark-text|;
+  --accent-color: ◊|green-dark-accent|;
+  --link-color: ◊|green-dark-link|;
+  --link-hover-bg: ◊|green-dark-link-hover-bg|;
+  --border-color: ◊|green-dark-border|;
+  --toc-border-color: ◊|green-dark-border|;
+  --toc-hover-color: ◊|green-dark-toc-hover|;
+  --toc-heading-hover: ◊|green-dark-toc-heading-hover|;
+  --home-hover-color: ◊|green-dark-home-hover-color|;
+  --home-hover-bg: ◊|green-dark-home-hover-bg|;
+  --nav-hover-bg: ◊|green-dark-nav-hover-bg|;
+}
+
+:root[data-theme="dark"][data-tint="pink"] {
+  --bg-color: ◊|pink-dark-bg|;
+  --text-color: ◊|pink-dark-text|;
+  --accent-color: ◊|pink-dark-accent|;
+  --link-color: ◊|pink-dark-link|;
+  --link-hover-bg: ◊|pink-dark-link-hover-bg|;
+  --border-color: ◊|pink-dark-border|;
+  --toc-border-color: ◊|pink-dark-border|;
+  --toc-hover-color: ◊|pink-dark-toc-hover|;
+  --toc-heading-hover: ◊|pink-dark-toc-heading-hover|;
+  --home-hover-color: ◊|pink-dark-home-hover-color|;
+  --home-hover-bg: ◊|pink-dark-home-hover-bg|;
+  --nav-hover-bg: ◊|pink-dark-nav-hover-bg|;
+}
+
 ◊; ——— @font-face declarations ———
 
 @font-face {
@@ -168,6 +388,13 @@ header {
   margin-bottom: 1rem;
 }
 
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  margin-left: auto;
+}
+
 .theme-toggle {
   background: none;
   border: none;
@@ -188,6 +415,78 @@ header {
 
 .theme-toggle:hover {
   background-color: var(--nav-hover-bg);
+}
+
+◊; ——— Tint picker ———
+◊; Collapsed: shows one dot (current color). Expanded: shows all four options.
+
+.tint-picker {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.tint-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent-color);
+  cursor: pointer;
+  transition: transform 0.15s, opacity 0.15s;
+  flex-shrink: 0;
+}
+
+.tint-dot:hover {
+  transform: scale(1.15);
+}
+
+.tint-dot[data-tint-value="none"]  { background-color: var(--bg-color); }
+.tint-dot[data-tint-value="sepia"] { background-color: ◊|sepia-light-bg|; }
+.tint-dot[data-tint-value="green"] { background-color: ◊|green-light-bg|; }
+.tint-dot[data-tint-value="pink"]  { background-color: ◊|pink-light-bg|; }
+
+◊; Dark mode swatch colors (system preference)
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .tint-dot[data-tint-value="none"]  { background-color: ◊|dark-bg|; }
+  :root:not([data-theme="light"]) .tint-dot[data-tint-value="sepia"] { background-color: ◊|sepia-dark-bg|; }
+  :root:not([data-theme="light"]) .tint-dot[data-tint-value="green"] { background-color: ◊|green-dark-bg|; }
+  :root:not([data-theme="light"]) .tint-dot[data-tint-value="pink"]  { background-color: ◊|pink-dark-bg|; }
+}
+
+◊; Dark mode swatch colors (explicit toggle)
+:root[data-theme="dark"] .tint-dot[data-tint-value="none"]  { background-color: ◊|dark-bg|; }
+:root[data-theme="dark"] .tint-dot[data-tint-value="sepia"] { background-color: ◊|sepia-dark-bg|; }
+:root[data-theme="dark"] .tint-dot[data-tint-value="green"] { background-color: ◊|green-dark-bg|; }
+:root[data-theme="dark"] .tint-dot[data-tint-value="pink"]  { background-color: ◊|pink-dark-bg|; }
+
+◊; Light mode explicit — override dark swatches back to light
+:root[data-theme="light"] .tint-dot[data-tint-value="none"]  { background-color: #fafafa; }
+:root[data-theme="light"] .tint-dot[data-tint-value="sepia"] { background-color: ◊|sepia-light-bg|; }
+:root[data-theme="light"] .tint-dot[data-tint-value="green"] { background-color: ◊|green-light-bg|; }
+:root[data-theme="light"] .tint-dot[data-tint-value="pink"]  { background-color: ◊|pink-light-bg|; }
+
+.tint-dot.active {
+  border-width: 2px;
+  border-color: var(--text-color);
+}
+
+.tint-options {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  overflow: hidden;
+  max-width: 0;
+  opacity: 0;
+  transition: max-width 0.25s ease, opacity 0.2s ease, margin 0.25s ease;
+  margin-left: 0;
+  padding: 2px 0;
+}
+
+.tint-picker.open .tint-options {
+  max-width: 80px;
+  opacity: 1;
+  margin-left: 6px;
+  overflow: visible;
 }
 
 .home-link {
