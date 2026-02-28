@@ -427,52 +427,58 @@ header {
 }
 
 .tint-dot {
-  width: 14px;
-  height: 14px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
-  border: 1.5px solid var(--accent-color);
+  border: 2px solid var(--accent-color);
   cursor: pointer;
-  transition: transform 0.15s, opacity 0.15s;
+  transition: transform 0.15s, opacity 0.15s, box-shadow 0.15s;
   flex-shrink: 0;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
 }
 
 .tint-dot:hover {
-  transform: scale(1.15);
+  transform: scale(1.2);
 }
 
 .tint-dot[data-tint-value="none"]  { background-color: var(--bg-color); }
-.tint-dot[data-tint-value="sepia"] { background-color: ◊|sepia-light-bg|; }
-.tint-dot[data-tint-value="green"] { background-color: ◊|green-light-bg|; }
-.tint-dot[data-tint-value="pink"]  { background-color: ◊|pink-light-bg|; }
+.tint-dot[data-tint-value="sepia"] { background-color: #ece0c8; }
+.tint-dot[data-tint-value="green"] { background-color: #d0e4d0; }
+.tint-dot[data-tint-value="pink"]  { background-color: #e8ced4; }
 
 ◊; Dark mode swatch colors (system preference)
+◊; Use boosted saturation so dark-mode dots are distinguishable from each other
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .tint-dot[data-tint-value="none"]  { background-color: ◊|dark-bg|; }
-  :root:not([data-theme="light"]) .tint-dot[data-tint-value="sepia"] { background-color: ◊|sepia-dark-bg|; }
-  :root:not([data-theme="light"]) .tint-dot[data-tint-value="green"] { background-color: ◊|green-dark-bg|; }
-  :root:not([data-theme="light"]) .tint-dot[data-tint-value="pink"]  { background-color: ◊|pink-dark-bg|; }
+  :root:not([data-theme="light"]) .tint-dot[data-tint-value="sepia"] { background-color: #3d3228; }
+  :root:not([data-theme="light"]) .tint-dot[data-tint-value="green"] { background-color: #283828; }
+  :root:not([data-theme="light"]) .tint-dot[data-tint-value="pink"]  { background-color: #382830; }
+  :root:not([data-theme="light"]) .tint-dot { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1); }
 }
 
 ◊; Dark mode swatch colors (explicit toggle)
 :root[data-theme="dark"] .tint-dot[data-tint-value="none"]  { background-color: ◊|dark-bg|; }
-:root[data-theme="dark"] .tint-dot[data-tint-value="sepia"] { background-color: ◊|sepia-dark-bg|; }
-:root[data-theme="dark"] .tint-dot[data-tint-value="green"] { background-color: ◊|green-dark-bg|; }
-:root[data-theme="dark"] .tint-dot[data-tint-value="pink"]  { background-color: ◊|pink-dark-bg|; }
+:root[data-theme="dark"] .tint-dot[data-tint-value="sepia"] { background-color: #3d3228; }
+:root[data-theme="dark"] .tint-dot[data-tint-value="green"] { background-color: #283828; }
+:root[data-theme="dark"] .tint-dot[data-tint-value="pink"]  { background-color: #382830; }
+:root[data-theme="dark"] .tint-dot { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1); }
 
 ◊; Light mode explicit — override dark swatches back to light
 :root[data-theme="light"] .tint-dot[data-tint-value="none"]  { background-color: #fafafa; }
-:root[data-theme="light"] .tint-dot[data-tint-value="sepia"] { background-color: ◊|sepia-light-bg|; }
-:root[data-theme="light"] .tint-dot[data-tint-value="green"] { background-color: ◊|green-light-bg|; }
-:root[data-theme="light"] .tint-dot[data-tint-value="pink"]  { background-color: ◊|pink-light-bg|; }
+:root[data-theme="light"] .tint-dot[data-tint-value="sepia"] { background-color: #ece0c8; }
+:root[data-theme="light"] .tint-dot[data-tint-value="green"] { background-color: #d0e4d0; }
+:root[data-theme="light"] .tint-dot[data-tint-value="pink"]  { background-color: #e8ced4; }
+:root[data-theme="light"] .tint-dot { box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08); }
 
 .tint-dot.active {
-  border-width: 2px;
+  border-width: 2.5px;
   border-color: var(--text-color);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
 }
 
 .tint-options {
   display: flex;
-  gap: 6px;
+  gap: 8px;
   align-items: center;
   overflow: hidden;
   max-width: 0;
@@ -483,9 +489,9 @@ header {
 }
 
 .tint-picker.open .tint-options {
-  max-width: 80px;
+  max-width: 120px;
   opacity: 1;
-  margin-left: 6px;
+  margin-left: 8px;
   overflow: visible;
 }
 
