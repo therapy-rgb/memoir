@@ -1,8 +1,10 @@
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light dark">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'">
   <title>◊(select-from-metas 'title here)</title>
   <meta name="description" content="Methodology — a memoir by Marcus Berley. Journal entries from the first year of his daughter's life, plus poems written in stolen moments.">
   <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -62,7 +64,7 @@
                (loop nxt front prose-buf technique-buf ripple-buf poems-buf back prose-page technique-page ripple-page)])
           (let ()
           (define entry (format "<a class=\"toc-entry~a\" href=\"~a\">~a</a>\n"
-                          (if (string=? section "poems") " toc-poem" "") nxt title))
+                          (if (string=? section "poems") " toc-poem" "") nxt (html-escape title)))
           (cond
             [(string=? section "prose")
              (loop nxt front (string-append prose-buf entry) technique-buf ripple-buf poems-buf back prose-page technique-page ripple-page)]

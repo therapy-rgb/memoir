@@ -40,7 +40,7 @@
   (txexpr 'cite '((class "epigraph-source")) elements))
 
 (define (link url . elements)
-  (txexpr 'a `((href ,url) (target "_blank") (rel "noopener")) elements))
+  (txexpr 'a `((href ,url) (target "_blank") (rel "noopener noreferrer")) elements))
 
 (define (emphasis . elements)
   (txexpr 'em empty elements))
@@ -89,6 +89,10 @@
       (txexpr 'img '((src "images/by.svg") (alt "Attribution") (class "cc-icon")) empty)
       (txexpr 'img '((src "images/nc.svg") (alt "NonCommercial") (class "cc-icon")) empty)
       (txexpr 'img '((src "images/nd.svg") (alt "NoDerivatives") (class "cc-icon")) empty))))
+
+;; HTML-escape helper for safe string interpolation in templates
+(define (html-escape s)
+  (string-replace (string-replace (string-replace (string-replace s "&" "&amp;") "<" "&lt;") ">" "&gt;") "\"" "&quot;"))
 
 ;; Poetry: preserve line breaks within a poem block
 (define (poem . elements)
