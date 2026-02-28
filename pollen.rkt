@@ -72,11 +72,14 @@
 
 ;; Figures: image with optional caption
 ;; Usage: ◊figure["images/photo.jpg"]{Caption text} or ◊figure["images/photo.jpg"]
-(define (figure src . elements)
+;; Optional alt text: ◊figure[#:alt "description"]["images/photo.jpg"]
+(define (figure #:alt [alt-text #f] src . elements)
   (define caption-elements (filter (lambda (e) (not (equal? e ""))) elements))
-  (define img (txexpr 'img `((src ,src) (loading "lazy") (alt ,(if (pair? caption-elements)
-                                                                    (string-join (filter string? caption-elements) "")
-                                                                    ""))) empty))
+  (define alt-val (or alt-text
+                      (if (pair? caption-elements)
+                          (string-join (filter string? caption-elements) "")
+                          "")))
+  (define img (txexpr 'img `((src ,src) (loading "lazy") (alt ,alt-val)) empty))
   (if (null? caption-elements)
       (txexpr 'figure empty (list img))
       (txexpr 'figure empty (list img (txexpr 'figcaption empty caption-elements)))))
